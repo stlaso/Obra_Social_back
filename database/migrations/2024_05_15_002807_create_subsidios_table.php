@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_seccional_tabla', function (Blueprint $table) {
+        Schema::create('subsidios', function (Blueprint $table) {
             $table->id();
+            $table->integer('tipo_subsidio');
+            $table->date('fecha_solicitud');
+            $table->date('fecha_otorgamiento');
+            $table->string('observaciones')->nullable();
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_seccional_tabla');
+        Schema::dropIfExists('subsidios');
     }
 };

@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('roles_tabla', function (Blueprint $table) {
+        Schema::create('obra_social', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo_obra');
+            $table->string('obra_social');
+            $table->string('otra');
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('roles_tabla');
+        Schema::dropIfExists('obra_social');
     }
 };

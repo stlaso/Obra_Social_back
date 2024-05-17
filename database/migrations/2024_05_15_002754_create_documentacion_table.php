@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('domicilio_tabla', function (Blueprint $table) {
+        Schema::create('documentacion', function (Blueprint $table) {
             $table->id();
+            $table->string('tipo_documento');
+            $table->string('archivo');
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('domicilio_tabla');
+        Schema::dropIfExists('documentacion');
     }
 };
