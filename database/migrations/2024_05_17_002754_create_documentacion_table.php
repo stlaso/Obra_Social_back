@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('subsidios', function (Blueprint $table) {
+        Schema::create('documentacion', function (Blueprint $table) {
             $table->id();
-            $table->integer('tipo_subsidio');
-            $table->date('fecha_solicitud');
-            $table->date('fecha_otorgamiento');
-            $table->string('observaciones')->nullable();
+            $table->string('tipo_documento');
+            $table->string('archivo');
+            $table->unsignedBigInteger('persona_id'); 
+            $table->foreign('persona_id')->references('id')->on('persona');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('subsidios');
+        Schema::dropIfExists('documentacion');
     }
 };

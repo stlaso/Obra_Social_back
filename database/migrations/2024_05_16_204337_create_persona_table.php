@@ -27,7 +27,13 @@ return new class extends Migration
             $table->integer('caracteristica_telefono');
             $table->integer('telefono');
             $table->unsignedBigInteger('nacionalidad_id');
-            $table->foreign('nacionalidad_id')->references('id')->on('nacionalidad');
+            $table->foreign('nacionalidad_id')->references('id')->on('nacionalidad'); 
+            $table->unsignedBigInteger('domicilio_id'); 
+            $table->foreign('domicilio_id')->references('id')->on('domicilio');
+            $table->unsignedBigInteger('datos_laborales_id'); 
+            $table->foreign('datos_laborales_id')->references('id')->on('datos_laborales');
+            $table->unsignedBigInteger('obra_social_id'); 
+            $table->foreign('obra_social_id')->references('id')->on('obra_social');
             $table->timestamps();
         });
     }

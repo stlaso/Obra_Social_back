@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('provincia', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
+            $table->unsignedBigInteger('nacionalidad_id');
+            $table->foreign('nacionalidad_id')->references('id')->on('nacionalidad');
         });
     }
 

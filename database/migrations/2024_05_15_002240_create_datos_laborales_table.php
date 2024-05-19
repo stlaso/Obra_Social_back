@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tipo_contrato', function (Blueprint $table) {
+        Schema::create('datos_laborales', function (Blueprint $table) {
             $table->id();
             $table->integer('tipo_contrato');
             $table->unsignedBigInteger('ugl_id');
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tipo_contrato');
+        Schema::dropIfExists('datos_laborales');
     }
 };
