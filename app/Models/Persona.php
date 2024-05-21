@@ -38,6 +38,11 @@ class Persona extends Model
         return $this->belongsTo(Nacionalidad::class, 'nacionalidad_id');
     }
 
+    public function estados(): BelongsTo
+    {
+        return $this->belongsTo(Estado::class, 'estados_id');
+    }
+
     public function documentaciones(): HasMany
     {
         return $this->HasMany(Documentacion::class, 'persona_id');

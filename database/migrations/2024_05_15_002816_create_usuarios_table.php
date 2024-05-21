@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('correo')->unique();
             $table->unsignedBigInteger('roles_id');
             $table->foreign('roles_id')->references('id')->on('roles');
+            $table->unsignedBigInteger('estados_id');
+            $table->foreign('estados_id')->references('id')->on('estados');
             $table->timestamps();
         });
     }

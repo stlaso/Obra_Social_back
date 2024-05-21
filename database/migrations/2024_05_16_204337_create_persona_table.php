@@ -34,6 +34,8 @@ return new class extends Migration
             $table->foreign('datos_laborales_id')->references('id')->on('datos_laborales');
             $table->unsignedBigInteger('obra_social_id'); 
             $table->foreign('obra_social_id')->references('id')->on('obra_social');
+            $table->unsignedBigInteger('estados_id');
+            $table->foreign('estados_id')->references('id')->on('estados');
             $table->timestamps();
         });
     }
