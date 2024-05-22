@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('username')->unique();
-            $table->string('password');
+            $table->string('contraseña');
             $table->integer('telefono');
             $table->string('correo')->unique();
             $table->unsignedBigInteger('roles_id');
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('estados_id');
             $table->foreign('estados_id')->references('id')->on('estados');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

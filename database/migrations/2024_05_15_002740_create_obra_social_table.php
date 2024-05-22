@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('obra_social', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_obra');
-            $table->string('obra_social');
-            $table->string('otra');
+            $table->string('tipo_obra')->nullable();
+            $table->string('obra_social')->nullable();
+            $table->string('otra')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

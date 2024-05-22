@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('domicilio', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('nombre')->nullable();
             $table->unsignedBigInteger('provincia_id');
-            $table->foreign('provincia_id')->references('id')->on('provincia')->onDelete('cascade');
+            $table->foreign('provincia_id')->references('id')->on('provincia');
             $table->unsignedBigInteger('localidad_id');
-            $table->foreign('localidad_id')->references('id')->on('localidad')->onDelete('cascade');
-            $table->integer('codigo_postal');
+            $table->foreign('localidad_id')->references('id')->on('localidad');
+            $table->integer('codigo_postal')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

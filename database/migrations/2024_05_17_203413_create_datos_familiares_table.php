@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('familiares', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->date('fecha_nacimiento');
-            $table->string('parentesco');
-            $table->string('tipo_documento');
-            $table->integer('documento');
+            $table->string('nombre')->nullable();
+            $table->date('fecha_nacimiento')->nullable();
+            $table->string('parentesco')->nullable();
+            $table->string('tipo_documento')->nullable();
+            $table->integer('documento')->nullable();
             $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('persona');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -13,13 +13,14 @@ return new class extends Migration
     {
         Schema::create('subsidios', function (Blueprint $table) {
             $table->id();
-            $table->integer('tipo_subsidio');
-            $table->date('fecha_solicitud');
-            $table->date('fecha_otorgamiento');
+            $table->integer('tipo_subsidio')->nullable();
+            $table->date('fecha_solicitud')->nullable();
+            $table->date('fecha_otorgamiento')->nullable();
             $table->string('observaciones')->nullable();
             $table->unsignedBigInteger('persona_id'); 
             $table->foreign('persona_id')->references('id')->on('persona');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

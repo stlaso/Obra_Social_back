@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->unsignedBigInteger('provincia_id');
             $table->foreign('provincia_id')->references('id')->on('provincia');
+            $table->softDeletes();
         });
     }
 
