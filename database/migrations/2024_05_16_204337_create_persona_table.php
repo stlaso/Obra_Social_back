@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('fecha_nacimiento')->nullable();
             $table->integer('estado_civil')->nullable();
             $table->string('tipo_documento');
-            $table->integer('dni');
+            $table->integer('dni')->unique();
             $table->integer('cuil')->nullable();
             $table->string('email')->nullable();
             $table->integer('caracteristica_telefono')->nullable();

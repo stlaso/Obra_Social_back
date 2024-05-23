@@ -14,8 +14,7 @@ class PersonaService
 
     public function personaCrear($data)
     {
-
-            Persona::create($data);
+        $persona=Persona::create($data);
 
 
     return $persona;

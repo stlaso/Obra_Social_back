@@ -27,7 +27,7 @@ class DomicilioRequest extends FormRequest
             'nombre' => 'required|string|max:255',
             'provincia_id' => 'required|integer|exists:provincia,id',
             'localidad_id' => 'required|integer|exists:localidad,id',
-            'codigo_postal' => 'required|integer',
+            'codigo_postal' => 'integer',
         ];
     }
 
@@ -48,7 +48,6 @@ class DomicilioRequest extends FormRequest
             'localidad_id.required' => 'El campo localidad es obligatorio.',
             'localidad_id.integer' => 'El campo localidad debe ser un número entero.',
             'localidad_id.exists' => 'La localidad seleccionada no es válida.',
-            'codigo_postal.required' => 'El campo código postal es obligatorio.',
             'codigo_postal.integer' => 'El campo código postal debe ser un número entero.',
         ];
     }

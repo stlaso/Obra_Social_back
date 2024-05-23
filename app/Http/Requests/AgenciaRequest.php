@@ -25,7 +25,7 @@ class AgenciaRequest extends FormRequest
     {
         return [
             'nombre' => 'required|string|max:255',
-            'domicilio_trabajo' => 'required|string|max:255',
+            'domicilio_trabajo' => '|string|max:255',
         ];
     }
 
@@ -40,7 +40,6 @@ class AgenciaRequest extends FormRequest
             'nombre.required' => 'El campo nombre es obligatorio.',
             'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
             'nombre.max' => 'El campo nombre no puede tener más de 255 caracteres.',
-            'domicilio_trabajo.required' => 'El campo domicilio de trabajo es obligatorio.',
             'domicilio_trabajo.string' => 'El campo domicilio de trabajo debe ser una cadena de texto.',
             'domicilio_trabajo.max' => 'El campo domicilio de trabajo no puede tener más de 255 caracteres.',
         ];

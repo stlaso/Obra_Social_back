@@ -24,8 +24,8 @@ class ObraSocialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tipo_obra' => 'required|string|max:255',
-            'obra_social' => 'required|string|max:255',
+            'tipo_obra' => '|string|max:255',
+            'obra_social' => '|string|max:255',
             'otra' => 'nullable|string|max:255',
         ];
     }
@@ -38,10 +38,8 @@ class ObraSocialRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'tipo_obra.required' => 'El campo tipo de obra social es obligatorio.',
             'tipo_obra.string' => 'El campo tipo de obra social debe ser una cadena de texto.',
             'tipo_obra.max' => 'El campo tipo de obra social no puede tener más de 255 caracteres.',
-            'obra_social.required' => 'El campo obra social es obligatorio.',
             'obra_social.string' => 'El campo obra social debe ser una cadena de texto.',
             'obra_social.max' => 'El campo obra social no puede tener más de 255 caracteres.',
             'otra.string' => 'El campo otra obra social debe ser una cadena de texto.',

@@ -24,9 +24,9 @@ class SubsidiosRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tipo_subsidio' => 'required|integer',
-            'fecha_solicitud' => 'required|date',
-            'fecha_otorgamiento' => 'required|date',
+            'tipo_subsidio' => 'integer',
+            'fecha_solicitud' => 'date',
+            'fecha_otorgamiento' => 'date',
             'observaciones' => 'nullable|string|max:255',
             'persona_id' => 'required|exists:persona,id',
         ];
@@ -40,11 +40,8 @@ class SubsidiosRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'tipo_subsidio.required' => 'El campo tipo de subsidio es obligatorio.',
             'tipo_subsidio.integer' => 'El campo tipo de subsidio debe ser un número entero.',
-            'fecha_solicitud.required' => 'El campo fecha de solicitud es obligatorio.',
             'fecha_solicitud.date' => 'El campo fecha de solicitud debe ser una fecha válida.',
-            'fecha_otorgamiento.required' => 'El campo fecha de otorgamiento es obligatorio.',
             'fecha_otorgamiento.date' => 'El campo fecha de otorgamiento debe ser una fecha válida.',
             'observaciones.string' => 'El campo observaciones debe ser una cadena de texto.',
             'observaciones.max' => 'El campo observaciones no puede tener más de 255 caracteres.',

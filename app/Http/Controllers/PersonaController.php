@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Resources\PersonaResource;
 use App\Services\PersonaService;
+use App\Http\Requests\PersonaRequest;
+use App\Exceptions\CustomizeException;
+
 
 
 class PersonaController extends Controller
@@ -28,12 +31,11 @@ class PersonaController extends Controller
         try {
             $validated = $request->validated();
             $persona = $this->personaService->personaCrear($validated);
-
             return response()->json([
-                "data" => $persona
-            ]);
+                "message" => "Persona creada exitosamente",
+            ], 200);
         } catch (\Exception $e) {
-            throw new CustomizeException($e, Response::HTTP_INTERNAL_SERVER_ERROR);
+            throw new CustomizeException($e->getMessage(), \Illuminate\Http\Response::HTTP_INTERNAL_SERVER_ERROR, $e);
         }
     }
 }
