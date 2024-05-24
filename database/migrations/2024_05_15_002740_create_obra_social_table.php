@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('tipo_obra')->nullable();
             $table->string('obra_social')->nullable();
-            $table->string('otra')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

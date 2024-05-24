@@ -24,7 +24,7 @@ class DocumentacionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tipo_documento' => 'required|string|max:255',
+            'tipo_documento' => 'string|max:255',
             'archivo' => 'file|max:10240', 
             'persona_id' => 'required|exists:persona,id',
         ];
@@ -38,7 +38,6 @@ class DocumentacionRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'tipo_documento.required' => 'El campo tipo de documento es obligatorio.',
             'tipo_documento.string' => 'El campo tipo de documento debe ser una cadena de texto.',
             'tipo_documento.max' => 'El campo tipo de documento no puede tener más de 255 caracteres.',
             'archivo.file' => 'El archivo debe ser un archivo válido.',

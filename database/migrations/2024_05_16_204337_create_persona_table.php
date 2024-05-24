@@ -14,21 +14,21 @@ return new class extends Migration
         Schema::create('persona', function (Blueprint $table) {
             $table->id();
             $table->integer('legajo');
-            $table->date('fecha_afiliacion');
+            $table->date('fecha_afiliacion')->nullable();;
             $table->string('nombre');
             $table->string('apellido');
             $table->integer('sexo')->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->integer('estado_civil')->nullable();
-            $table->string('tipo_documento');
+            $table->string('tipo_documento')->nullable();;
             $table->integer('dni')->unique();
             $table->integer('cuil')->nullable();
             $table->string('email')->nullable();
             $table->integer('caracteristica_telefono')->nullable();
             $table->integer('telefono')->nullable();
-            $table->unsignedBigInteger('nacionalidad_id');
+            $table->unsignedBigInteger('nacionalidad_id')->nullable();;
             $table->foreign('nacionalidad_id')->references('id')->on('nacionalidad'); 
-            $table->unsignedBigInteger('domicilio_id'); 
+            $table->unsignedBigInteger('domicilio_id')->nullable();; 
             $table->foreign('domicilio_id')->references('id')->on('domicilio');
             $table->unsignedBigInteger('datos_laborales_id')->nullable(); 
             $table->foreign('datos_laborales_id')->references('id')->on('datos_laborales');

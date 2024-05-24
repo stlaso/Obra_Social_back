@@ -24,10 +24,10 @@ class DatosFamiliaresRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => 'string|max:255',
+            'familiar' => 'string|max:255',
             'fecha_nacimiento' => 'date',
             'parentesco' => 'string|max:255',
-            'tipo_documento' => 'string|max:255',
+            'documentacion_documento' => 'string|max:255',
             'documento' => 'integer',
             'persona_id' => 'required|exists:persona,id',
         ];
@@ -41,13 +41,13 @@ class DatosFamiliaresRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
-            'nombre.max' => 'El campo nombre no puede tener más de 255 caracteres.',
+            'familiar.string' => 'El campo familiar debe ser una cadena de texto.',
+            'familiar.max' => 'El campo familiar no puede tener más de 255 caracteres.',
             'fecha_nacimiento.date' => 'El campo fecha de nacimiento debe ser una fecha válida.',
             'parentesco.string' => 'El campo parentesco debe ser una cadena de texto.',
             'parentesco.max' => 'El campo parentesco no puede tener más de 255 caracteres.',
-            'tipo_documento.string' => 'El campo tipo de documento debe ser una cadena de texto.',
-            'tipo_documento.max' => 'El campo tipo de documento no puede tener más de 255 caracteres.',
+            'documentacion_documento.string' => 'El campo tipo de documento debe ser una cadena de texto.',
+            'documentacion_documento.max' => 'El campo tipo de documento no puede tener más de 255 caracteres.',
             'documento.integer' => 'El campo documento debe ser un número entero.',
             'persona_id.exists' => 'La persona seleccionada no es válida.',
         ];

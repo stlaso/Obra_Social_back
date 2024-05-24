@@ -14,9 +14,15 @@ class PersonaService
 
     public function personaCrear($data)
     {
+        domicilio($data);
         $persona=Persona::create($data);
 
 
     return $persona;
+    }
+
+    public function domicilio($data)
+    {
+        
     }
 }
