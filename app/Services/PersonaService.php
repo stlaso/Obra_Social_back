@@ -7,6 +7,7 @@ use App\Models\Domicilio;
 use App\Models\DatosLaborales;
 use App\Models\obraSocial;
 use App\Models\Familiares;
+use App\Models\Subsidios;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log; 
 
@@ -50,6 +51,10 @@ class PersonaService
             {
                 $this->familiares($persona->id, $data['familiares']);
             }
+            if (isset($data['subsidios'])) 
+            {
+                $this->subsidios($persona->id, $data['subsidios']);
+            }
     
             DB::commit();
     
@@ -88,6 +93,17 @@ class PersonaService
         {
             $familia['persona_id']=$id;
             $familiares=Familiares::create($familia);
+        }
+
+    }
+
+    public function subsidios($id,$data)
+    {
+        
+        foreach($data as $subsidio)
+        {
+            $subsidio['persona_id']=$id;
+            $subsidios=Subsidios::create($subsidio);
         }
 
     }

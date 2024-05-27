@@ -73,13 +73,22 @@ class PersonaRequest extends FormRequest
             'familiares.*.fecha_nacimiento' => 'nullable|date',
             'familiares.*.tipo_documento' => 'nullable|string|max:255',
             'familiares.*.documento' => 'nullable|integer',
-            'familiares.*.parentesco_id' => 'required|exists:parentesco,id'
+            'familiares.*.parentesco_id' => 'nullable|exists:parentesco,id',
+
+            //SUBSIDIOS
+            'subsidios' => 'array',
+            'subsidios.*.tipo_subsidio_id' => 'nullable|exists:tipo_subsidio,id',
+            'subsidios.*.fecha_solicitud' => 'nullable|date',
+            'subsidios.*.fecha_otorgamiento' => 'nullable|date|after_or_equal:subsidios.*.fecha_solicitud',
+            'subsidios.*.observaciones' => 'nullable|string|max:255'
 
             //DOCUMENTACION
             /*
             'documentacion.*.tipo_documento_id' => 'nullable|exists:tipo_documento,id',
             'documentacion.*.archivo' => 'nullable|string|max:2048'
             */
+
+
 
         ];
     }
