@@ -13,28 +13,29 @@ return new class extends Migration
     {
         Schema::create('persona', function (Blueprint $table) {
             $table->id();
-            $table->integer('legajo');
+            $table->integer('legajo')->unique();
             $table->date('fecha_afiliacion')->nullable();;
             $table->string('nombre');
             $table->string('apellido');
-            $table->integer('sexo')->nullable();
             $table->date('fecha_nacimiento')->nullable();
-            $table->integer('estado_civil')->nullable();
             $table->string('tipo_documento')->nullable();;
             $table->integer('dni')->unique();
-            $table->integer('cuil')->nullable();
+            $table->string('cuil', 20)->nullable();
             $table->string('email')->nullable();
-            $table->integer('caracteristica_telefono')->nullable();
             $table->integer('telefono')->nullable();
             $table->unsignedBigInteger('nacionalidad_id')->nullable();;
-            $table->foreign('nacionalidad_id')->references('id')->on('nacionalidad'); 
             $table->unsignedBigInteger('domicilio_id')->nullable();; 
-            $table->foreign('domicilio_id')->references('id')->on('domicilio');
             $table->unsignedBigInteger('datos_laborales_id')->nullable(); 
-            $table->foreign('datos_laborales_id')->references('id')->on('datos_laborales');
             $table->unsignedBigInteger('obra_social_id')->nullable(); 
-            $table->foreign('obra_social_id')->references('id')->on('obra_social');
             $table->unsignedBigInteger('estados_id');
+            $table->unsignedBigInteger('estado_civil_id')->nullable();
+            $table->unsignedBigInteger('sexo_id')->nullable();
+            $table->foreign('estado_civil_id')->references('id')->on('estado_civil');
+            $table->foreign('sexo_id')->references('id')->on('sexo');
+            $table->foreign('datos_laborales_id')->references('id')->on('datos_laborales');
+            $table->foreign('obra_social_id')->references('id')->on('obra_social');
+            $table->foreign('domicilio_id')->references('id')->on('domicilio');
+            $table->foreign('nacionalidad_id')->references('id')->on('nacionalidad'); 
             $table->foreign('estados_id')->references('id')->on('estados');
             $table->softDeletes();
             $table->timestamps();

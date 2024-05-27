@@ -21,5 +21,10 @@ class Subsidios extends Model
     {
         return $this->BelongsTo(Persona::class, 'persona_id');
     }
+
+    public function tipoSubsidio(): BelongsTo
+    {
+        return $this->BelongsTo(TipoSubsidio::class, 'tipo_subsidio_id');
+    }
     
 }

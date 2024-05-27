@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('agencia', function (Blueprint $table) {
+        Schema::create('tramo', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('domicilio_trabajo')->nullable();
-            $table->unsignedBigInteger('ugl_id')->nullable();
-            $table->foreign('ugl_id')->references('id')->on('tipo_ugl');
+            $table->string('horas');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('agencia');
+        Schema::dropIfExists('tramo');
     }
 };

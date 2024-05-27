@@ -21,5 +21,9 @@ class Familiares extends Model
     {
         return $this->BelongsTo(Persona::class, 'persona_id');
     }
+    public function parentesco(): BelongsTo
+    {
+        return $this->BelongsTo(Parentesco::class, 'parentesco_id');
+    }
 
 }

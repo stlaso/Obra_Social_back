@@ -24,7 +24,7 @@ class ObraSocialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'tipo_obra' => '|string|max:255',
+            'tipo_obra_id' => '|string|max:255',
             'obra_social' => '|string|max:255',
 
         ];

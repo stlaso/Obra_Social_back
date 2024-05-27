@@ -25,41 +25,61 @@ class PersonaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'legajo' => 'required|integer',
-            'fecha_afiliacion' => 'date',
-            'nombre' => 'required|string|max:255',
-            'apellido' => 'required|string|max:255',
-            'sexo' => 'integer',
-            'fecha_nacimiento' => 'date',
-            'estado_civil' => 'integer',
-            'tipo_documento' => 'string|max:255',
-            'dni' => ['required', 'integer','unique:persona'],
-            'cuil' => 'integer',
-            'email' => 'email|max:255',
-            'caracteristica_telefono' => 'integer',
-            'telefono' => 'integer',
-            'nacionalidad_id' => 'exists:nacionalidad,id',
-            'domicilio_id' => '|exists:domicilio,id',
-            'datos_laborales_id' => 'exists:datos_laborales,id',
-            'obra_social_id' => 'exists:obra_social,id',
-            'estados_id' => 'required|exists:estados,id',
-            'domicilio' => 'string|max:255',
-            'provincia_id' => 'integer|exists:provincia,id',
-            'localidad_id' => 'integer|exists:localidad,id',
-            'codigo_postal' => 'integer',
-            'tipo_contrato' => 'integer',
-            'ugl_id' => 'exists:tipo_ugl,id',
-            'agencia_id' => 'exists:agencia,id',
-            'seccional_id' => 'exists:seccional,id',
-            'agrupamiento' => '|string|max:255',
-            'tramo' => 'integer',
-            'carga_horaria' => 'string|max:255',
-            'telefono_laboral' => 'integer',
-            'fecha_ingreso' => 'date',
-            'email' => 'email|max:255',
-            'telefono' => 'integer',
-            'tipo_obra' => '|string|max:255',
-            'obra_social' => '|string|max:255',
+            //PERSONA
+            'persona.legajo' => 'required|integer|unique:persona', 
+            'persona.fecha_afiliacion' => 'nullable|date',
+            'persona.nombre' => 'required|string',
+            'persona.apellido' => 'required|string',
+            'persona.sexo_id' => 'nullable|exists:sexo,id',  // Referencia a la tabla sexo
+            'persona.fecha_nacimiento' => 'nullable|date',
+            'persona.estado_civil_id' => 'nullable|exists:estado_civil,id', // Referencia
+            'persona.tipo_documento' => 'nullable|string',
+            'persona.dni' => 'required|integer|unique:persona', 
+            'persona.cuil' => 'nullable|string|unique:persona', 
+            'persona.email' => 'nullable|email|unique:persona', 
+            'persona.telefono' => 'nullable|integer',
+            'persona.nacionalidad_id' => 'nullable|exists:nacionalidad,id',
+            'persona.estados_id' => 'required|exists:estados,id', 
+            
+            //DOMICILIO
+            'domicilio.provincia_id'=>'nullable|integer',
+            'domicilio.localidad_id'=>'nullable|integer',
+            'domicilio.calle' => 'nullable|string',
+            'domicilio.numero' => 'nullable|string',
+            'domicilio.piso' => 'nullable|string',
+            'domicilio.codigo_postal' => 'nullable|integer',
+
+            //DATOS LABORALES
+      
+            'datos_laborales.carga_horaria' => 'nullable|string',
+            'datos_laborales.telefono_laboral' => 'nullable|integer',
+            'datos_laborales.fecha_ingreso' => 'nullable|date',
+            'datos_laborales.email' => 'nullable|email',
+            'datos_laborales.tramo_id' => 'nullable|integer',
+            'datos_laborales.agrupamiento_id' => 'nullable|integer',
+            'datos_laborales.seccional_id' => 'nullable|exists:seccional,id',
+            'datos_laborales.agencia_id'=>'nullable|integer',
+            'datos_laborales.tipo_contrato_id' => 'nullable|integer',
+
+
+            //OBRA SOCIAL
+            'obra_social.tipo_obra' => 'nullable|string',
+            'obra_social.obra_social' => 'nullable|string',
+
+            //Familiares
+
+            'familiares' => 'array',
+            'familiares.*.nombre' => 'nullable|string|max:255',
+            'familiares.*.fecha_nacimiento' => 'nullable|date',
+            'familiares.*.tipo_documento' => 'nullable|string|max:255',
+            'familiares.*.documento' => 'nullable|integer',
+            'familiares.*.parentesco_id' => 'required|exists:parentesco,id'
+
+            //DOCUMENTACION
+            /*
+            'documentacion.*.tipo_documento_id' => 'nullable|exists:tipo_documento,id',
+            'documentacion.*.archivo' => 'nullable|string|max:2048'
+            */
 
         ];
     }
@@ -72,52 +92,68 @@ class PersonaRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'legajo.required' => 'El campo legajo es obligatorio.',
-            'legajo.integer' => 'El campo legajo debe ser un número entero.',
-            'fecha_afiliacion.date' => 'El campo fecha de afiliación debe ser una fecha válida.',
-            'nombre.required' => 'El campo nombre es obligatorio.',
-            'nombre.string' => 'El campo nombre debe ser una cadena de texto.',
-            'nombre.max' => 'El campo nombre no puede tener más de 255 caracteres.',
-            'apellido.required' => 'El campo apellido es obligatorio.',
-            'apellido.string' => 'El campo apellido debe ser una cadena de texto.',
-            'apellido.max' => 'El campo apellido no puede tener más de 255 caracteres.',
-            'sexo.integer' => 'El campo sexo debe ser un número entero.',
-            'fecha_nacimiento.date' => 'El campo fecha de nacimiento debe ser una fecha válida.',
-            'dni.unique'=>'El DNI es unico',
-            'domicilio.string' => 'El campo domicilio debe ser una cadena de texto.',
-            'domicilio.max' => 'El campo domicilio no puede tener más de 255 caracteres.',
-            'provincia_id.integer' => 'El campo provincia debe ser un número entero.',
-            'provincia_id.exists' => 'La provincia seleccionada no es válida.',
-            'localidad_id.integer' => 'El campo localidad debe ser un número entero.',
-            'localidad_id.exists' => 'La localidad seleccionada no es válida.',
-            'codigo_postal.integer' => 'El campo código postal debe ser un número entero.',
-            'tipo_contrato.integer' => 'El campo tipo de contrato debe ser un número entero.',
-            'ugl_id.exists' => 'La UGL seleccionada no es válida.',
-            'agencia_id.exists' => 'La agencia seleccionada no es válida.',
-            'seccional_id.exists' => 'La seccional seleccionada no es válida.',
-            'agrupamiento.string' => 'El campo agrupamiento debe ser una cadena de texto.',
-            'agrupamiento.max' => 'El campo agrupamiento no puede tener más de 255 caracteres.',
-            'tramo.integer' => 'El campo tramo debe ser un número entero.',
-            'carga_horaria.string' => 'El campo carga horaria debe ser una cadena de texto.',
-            'carga_horaria.max' => 'El campo carga horaria no puede tener más de 255 caracteres.',
-            'telefono_laboral.integer' => 'El campo teléfono laboral debe ser un número entero.',
-            'fecha_ingreso.date' => 'El campo fecha de ingreso debe ser una fecha válida.',
-            'email.email' => 'El campo email debe ser una dirección de correo electrónico válida.',
-            'email.max' => 'El campo email no puede tener más de 255 caracteres.',
-            'telefono.integer' => 'El campo teléfono debe ser un número entero.',
-            'tipo_obra.string' => 'El campo tipo de obra social debe ser una cadena de texto.',
-            'tipo_obra.max' => 'El campo tipo de obra social no puede tener más de 255 caracteres.',
-            'obra_social.string' => 'El campo obra social debe ser una cadena de texto.',
-            'obra_social.max' => 'El campo obra social no puede tener más de 255 caracteres.',
-            'familiar.string' => 'El campo familiar debe ser una cadena de texto.',
-            'familiar.max' => 'El campo familiar no puede tener más de 255 caracteres.',
-            'fecha_nacimiento.date' => 'El campo fecha de nacimiento debe ser una fecha válida.',
-            'parentesco.string' => 'El campo parentesco debe ser una cadena de texto.',
-            'parentesco.max' => 'El campo parentesco no puede tener más de 255 caracteres.',
-            'tipo_documento.string' => 'El campo tipo de documento debe ser una cadena de texto.',
-            'tipo_documento.max' => 'El campo tipo de documento no puede tener más de 255 caracteres.',
-            'documento.integer' => 'El campo documento debe ser un número entero.',
-            'persona_id.exists' => 'La persona seleccionada no es válida.',
+            // PERSONA
+            'persona.legajo.required' => 'El legajo es obligatorio.',
+            'persona.legajo.integer' => 'El legajo debe ser un número entero.',
+            'persona.legajo.unique' => 'El legajo ya está registrado.',
+            'persona.fecha_afiliacion.date' => 'La fecha de afiliación debe ser una fecha válida.',
+            'persona.nombre.required' => 'El nombre es obligatorio.',
+            'persona.apellido.required' => 'El apellido es obligatorio.',
+            'persona.sexo_id.exists' => 'El sexo seleccionado no es válido.',
+            'persona.fecha_nacimiento.date' => 'La fecha de nacimiento debe ser una fecha válida.',
+            'persona.estado_civil_id.exists' => 'El estado civil seleccionado no es válido.',
+            'persona.dni.required' => 'El DNI es obligatorio.',
+            'persona.dni.integer' => 'El DNI debe ser un número entero.',
+            'persona.dni.unique' => 'El DNI ya está registrado.',
+            'persona.cuil.integer' => 'El CUIL debe ser un número entero.',
+            'persona.cuil.unique' => 'El CUIL ya está registrado.',
+            'persona.email.email' => 'El correo electrónico debe ser una dirección válida.',
+            'persona.email.unique' => 'El correo electrónico ya está registrado.',
+            'persona.telefono.integer' => 'El teléfono debe ser un número entero.',
+            'persona.nacionalidad_id.exists' => 'La nacionalidad seleccionada no es válida.',
+            'persona.estados_id.required' => 'El estado es obligatorio.',
+            'persona.estados_id.exists' => 'El estado seleccionado no es válido.',
+    
+            // DOMICILIO
+            'domicilio.provincia_id.integer' => 'La provincia debe ser un número entero.',
+            'domicilio.localidad_id.integer' => 'La localidad debe ser un número entero.',
+            'domicilio.calle.string' => 'La calle debe ser una cadena de texto.',
+            'domicilio.numero.string' => 'El número debe ser una cadena de texto.',
+            'domicilio.piso.string' => 'El piso debe ser una cadena de texto.',
+            'domicilio.codigo_postal.integer' => 'El código postal debe ser un número entero.',
+    
+            // DATOS LABORALES
+            'datos_laborales.carga_horaria.string' => 'La carga horaria debe ser una cadena de texto.',
+            'datos_laborales.telefono_laboral.integer' => 'El teléfono laboral debe ser un número entero.',
+            'datos_laborales.fecha_ingreso.date' => 'La fecha de ingreso debe ser una fecha válida.',
+            'datos_laborales.email.email' => 'El correo electrónico laboral debe ser una dirección válida.',
+            'datos_laborales.tramo_id.integer' => 'El tramo debe ser un número entero.',
+            'datos_laborales.agrupamiento_id.integer' => 'El agrupamiento debe ser un número entero.',
+            'datos_laborales.seccional_id.exists' => 'La seccional seleccionada no es válida.',
+            'datos_laborales.agencia_id.integer' => 'La agencia debe ser un número entero.',
+            'datos_laborales.ugl_id.exists' => 'La UGL seleccionada no es válida.',
+            'datos_laborales.tipo_contrato_id.integer' => 'El tipo de contrato debe ser un número entero.',
+    
+            // OBRA SOCIAL
+            'obra_social.nombre.string' => 'El nombre de la obra social debe ser una cadena de texto.',
+            'obra_social.tipo.string' => 'El tipo de obra social debe ser una cadena de texto.',
+    
+            // FAMILIARES
+            'familiares.*.nombre.required' => 'El nombre del familiar es obligatorio.',
+            'familiares.*.nombre.string' => 'El nombre del familiar debe ser una cadena de texto.',
+            'familiares.*.nombre.max' => 'El nombre del familiar no puede tener más de 255 caracteres.',
+            'familiares.*.fecha_nacimiento.date' => 'La fecha de nacimiento del familiar debe ser una fecha válida.',
+            'familiares.*.tipo_documento.string' => 'El tipo de documento del familiar debe ser una cadena de texto.',
+            'familiares.*.tipo_documento.max' => 'El tipo de documento del familiar no puede tener más de 255 caracteres.',
+            'familiares.*.documento.integer' => 'El documento del familiar debe ser un número entero.',
+            'familiares.*.parentesco_id.required' => 'El parentesco del familiar es obligatorio.',
+            'familiares.*.parentesco_id.exists' => 'El parentesco del familiar seleccionado no es válido.',
+    
+            // DOCUMENTACION
+            'documentacion.*.tipo_documento_id.exists' => 'El tipo de documento seleccionado no es válido.',
+            'documentacion.*.archivo.file' => 'El archivo debe ser un archivo válido.',
+            'documentacion.*.archivo.mimes' => 'El archivo debe ser de tipo: jpg, jpeg, png, docx, pdf o xlsx.',
+            'documentacion.*.archivo.max' => 'El archivo no puede superar los 2MB.',
         ];
     }
 }

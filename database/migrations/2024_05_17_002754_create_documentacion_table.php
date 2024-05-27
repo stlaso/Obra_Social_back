@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('documentacion', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo_documento');
+            $table->unsignedBigInteger('tipo_documento_id');
             $table->string('archivo')->nullable();
             $table->unsignedBigInteger('persona_id'); 
+            $table->foreign('tipo_documento_id')->references('id')->on('tipo_documento');
             $table->foreign('persona_id')->references('id')->on('persona');
             $table->timestamps();
             $table->softDeletes();

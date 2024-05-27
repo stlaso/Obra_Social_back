@@ -18,10 +18,7 @@ class DatosLaborales extends Model
 
     protected $guarded = [];
 
-    public function ugl(): BelongsTo
-    {
-        return $this->belongsTo(Ugl::class, 'ugl_id');
-    }
+
 
     public function agencias(): BelongsTo
     {
@@ -31,6 +28,19 @@ class DatosLaborales extends Model
     public function seccionales(): BelongsTo
     {
         return $this->belongsTo(Seccional::class, 'seccional_id');
+    }
+    public function tramo(): BelongsTo
+    {
+        return $this->belongsTo(Tramo::class, 'tramo_id');
+    }
+
+    public function tipoContrato(): BelongsTo
+    {
+        return $this->belongsTo(TipoContrato::class, 'tipo_contrato_id');
+    }
+    public function agrupamiento(): BelongsTo
+    {
+        return $this->belongsTo(Agrupamiento::class, 'agrupamiento_id');
     }
 
     public function personas(): HasMany

@@ -34,7 +34,7 @@ class DatosLaboralesRequest extends FormRequest
             'telefono_laboral' => 'integer',
             'fecha_ingreso' => 'date',
             'email' => 'email|max:255',
-            'telefono' => 'integer',
+
         ];
     }
 
@@ -59,7 +59,6 @@ class DatosLaboralesRequest extends FormRequest
             'fecha_ingreso.date' => 'El campo fecha de ingreso debe ser una fecha válida.',
             'email.email' => 'El campo email debe ser una dirección de correo electrónico válida.',
             'email.max' => 'El campo email no puede tener más de 255 caracteres.',
-            'telefono.integer' => 'El campo teléfono debe ser un número entero.',
         ];
     }
 }

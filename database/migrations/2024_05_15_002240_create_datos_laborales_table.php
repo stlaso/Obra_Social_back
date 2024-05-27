@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('datos_laborales', function (Blueprint $table) {
             $table->id();
-            $table->integer('tipo_contrato')->nullable();
-            $table->unsignedBigInteger('ugl_id')->nullable();
-            $table->foreign('ugl_id')->references('id')->on('tipo_ugl');
+            $table->unsignedBigInteger('tipo_contrato_id');
             $table->unsignedBigInteger('agencia_id')->nullable();
-            $table->foreign('agencia_id')->references('id')->on('agencia');
             $table->unsignedBigInteger('seccional_id')->nullable();
-            $table->foreign('seccional_id')->references('id')->on('seccional');
-            $table->string('agrupamiento')->nullable();
-            $table->integer('tramo')->nullable();
+            $table->unsignedBigInteger('agrupamiento_id');
+            $table->unsignedBigInteger('tramo_id');
             $table->string('carga_horaria')->nullable();
             $table->integer('telefono_laboral')->nullable();
             $table->date('fecha_ingreso')->nullable();
             $table->string('email')->nullable();
-            $table->integer('telefono')->nullable();
+            $table->foreign('tramo_id')->references('id')->on('tramo');
+            $table->foreign('seccional_id')->references('id')->on('seccional');
+            $table->foreign('agencia_id')->references('id')->on('agencia');
+            $table->foreign('agrupamiento_id')->references('id')->on('agrupamiento');
+            $table->foreign('tipo_contrato_id')->references('id')->on('tipo_contrato');
             $table->timestamps();
             $table->softDeletes();
         });

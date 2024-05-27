@@ -24,7 +24,9 @@ class DomicilioRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'domicilio' => 'string|max:255',
+            'calle' => 'string|max:255',
+            'numero' => 'string|max:255',
+            'piso' => 'string|max:255',
             'provincia_id' => 'integer|exists:provincia,id',
             'localidad_id' => 'integer|exists:localidad,id',
             'codigo_postal' => 'integer',
@@ -39,8 +41,8 @@ class DomicilioRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'domicilio.string' => 'El campo domicilio debe ser una cadena de texto.',
-            'domicilio.max' => 'El campo domicilio no puede tener más de 255 caracteres.',
+            'calle.string' => 'El campo calle debe ser una cadena de texto.',
+            'calle.max' => 'El campo calle no puede tener más de 255 caracteres.',
             'provincia_id.integer' => 'El campo provincia debe ser un número entero.',
             'provincia_id.exists' => 'La provincia seleccionada no es válida.',
             'localidad_id.integer' => 'El campo localidad debe ser un número entero.',
