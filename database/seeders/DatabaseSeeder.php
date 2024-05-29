@@ -23,6 +23,11 @@ class DatabaseSeeder extends Seeder
             TipoSubsidioSeeder::class,
             TramoSeeder::class,
             EstadosSeeder::class,
+            RolesSeeder::class,
+            SeccionalSeeder::class,
+            UGLSeeder::class,
+            ProvinciaSeeder::class,
+
         ]);
     }
 }
