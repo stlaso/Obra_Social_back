@@ -13,11 +13,11 @@ class Documentacion extends Model
     use HasFactory;
 
 
-    protected $table='Documentacion';
+    protected $table='documentacion';
 
     protected $guarded = [];
 
-    
+
     public function personas(): BelongsTo
     {
         return $this->BelongsTo(Persona::class, 'persona_id');
@@ -26,5 +26,5 @@ class Documentacion extends Model
     {
         return $this->BelongsTo(TipoDocumento::class, 'tipo_documento_id');
     }
-    
+
 }

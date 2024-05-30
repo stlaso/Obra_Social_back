@@ -7,9 +7,10 @@ use App\Models\Domicilio;
 use App\Models\DatosLaborales;
 use App\Models\obraSocial;
 use App\Models\Familiares;
+use App\Models\Documentacion;
 use App\Models\Subsidios;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log; 
+use Illuminate\Support\Facades\Log;
 
 class PersonaService
 {
@@ -21,45 +22,52 @@ class PersonaService
 
     public function personaCrear($data)
     {
-        DB::beginTransaction(); 
-    
+        DB::beginTransaction();
+
         try {
-            if (isset($data['domicilio'])) 
+            if (isset($data['domicilio']))
             {
-                $domicilio = $this->domicilio($data['domicilio']);
+                $domicilio = $this->crearDomicilio($data['domicilio']);
                 $data['persona']['domicilio_id'] = $domicilio;
             }
 
-            if (isset($data['datos_laborales'])) 
+            if (isset($data['datos_laborales']))
             {
-                $datosLaborales = $this->datosLaborales($data['datos_laborales']);
-                $data['persona']['datos_laborales_id'] = $datosLaborales; 
+                $datosLaborales = $this->crearDatosLaborales($data['datos_laborales']);
+                $data['persona']['datos_laborales_id'] = $datosLaborales;
             }
-    
-          
-            if (isset($data['obra_social'])) 
+
+
+            if (isset($data['obra_social']))
             {
-                $obraSocial = $this->obraSocial($data['obra_social']);
-                $data['persona']['obra_social_id'] = $obraSocial; 
+                $obraSocial = $this->crearObraSocial($data['obra_social']);
+                $data['persona']['obra_social_id'] = $obraSocial;
             }
-    
-     
+
+
             $persona = Persona::create($data['persona']);
 
-          
-            if (isset($data['familiares'])) 
+
+            if (isset($data['familiares']))
             {
-                $this->familiares($persona->id, $data['familiares']);
+                $this->crearFamiliares($persona->id, $data['familiares']);
             }
-            if (isset($data['subsidios'])) 
+
+            if (isset($data['subsidios']))
             {
-                $this->subsidios($persona->id, $data['subsidios']);
+                $this->crearSubsidios($persona->id, $data['subsidios']);
             }
-    
+
+            if (isset($data['documentacion']))
+            {
+                $this->crearDocumentacion($persona->id, $data['documentacion']);
+            }
+
+
             DB::commit();
-    
+
             return $persona;
-        } catch (\Exception $e) 
+        } catch (\Exception $e)
         {
             DB::rollback();
             Log::error('Error al crear persona: ' . $e->getMessage());
@@ -67,28 +75,28 @@ class PersonaService
         }
     }
 
-    public function domicilio($data)
+    public function crearDomicilio($data)
     {
         $domicilio=Domicilio::create($data);
         return $domicilio->id;
-        
+
     }
 
-    public function datosLaborales($data)
+    public function crearDatosLaborales($data)
     {
         $DatosLaborales=DatosLaborales::create($data);
         return $DatosLaborales->id;
     }
 
-    public function obraSocial($data)
+    public function crearObraSocial($data)
     {
         $obraSocial=ObraSocial::create($data);
         return $obraSocial->id;
     }
 
-    public function familiares($id,$data)
+    public function crearFamiliares($id,$data)
     {
-        
+
         foreach($data as $familia)
         {
             $familia['persona_id']=$id;
@@ -97,13 +105,24 @@ class PersonaService
 
     }
 
-    public function subsidios($id,$data)
+    public function crearSubsidios($id,$data)
     {
-        
+
         foreach($data as $subsidio)
         {
             $subsidio['persona_id']=$id;
             $subsidios=Subsidios::create($subsidio);
+        }
+
+    }
+
+    public function crearDocumentacion($id,$data)
+    {
+
+        foreach($data as $documentacion)
+        {
+            $documentacion['persona_id']=$id;
+            $documentacion=documentacion::create($documentacion);
         }
 
     }
@@ -122,6 +141,11 @@ class PersonaService
                     $domicilio = $this->domicilio($data['domicilio']);
                     $persona->domicilio_id = $domicilio;
                 }
+            } else {
+                if ($persona->domicilio) {
+                    $persona->domicilio->delete();
+                    $persona->domicilio_id = null;
+                }
             }
 
             if (isset($data['datos_laborales'])) {
@@ -130,6 +154,11 @@ class PersonaService
                 } else {
                     $datosLaborales = $this->datosLaborales($data['datos_laborales']);
                     $persona->datos_laborales_id = $datosLaborales;
+                }
+            } else {
+                if ($persona->datosLaborales) {
+                    $persona->datosLaborales->delete();
+                    $persona->datos_laborales_id = null;
                 }
             }
 
@@ -140,16 +169,33 @@ class PersonaService
                     $obraSocial = $this->obraSocial($data['obra_social']);
                     $persona->obra_social_id = $obraSocial;
                 }
+            } else {
+                if ($persona->obraSocial) {
+                    $persona->obraSocial->delete();
+                    $persona->obra_social_id = null;
+                }
             }
 
             $persona->update($data['persona']);
 
             if (isset($data['familiares'])) {
                 $this->actualizarFamiliares($persona->id, $data['familiares']);
+            } else {
+                $this->eliminarFamiliares($persona->id);
             }
 
+            // Actualizar subsidios
             if (isset($data['subsidios'])) {
                 $this->actualizarSubsidios($persona->id, $data['subsidios']);
+            } else {
+                $this->eliminarSubsidios($persona->id);
+            }
+
+            // Actualizar documentacion
+            if (isset($data['documentacion'])) {
+                $this->documentacion($persona->id, $data['documentacion']);
+            } else {
+                $this->eliminarDocumentacion($persona->id);
             }
 
             DB::commit();
@@ -208,6 +254,45 @@ class PersonaService
         foreach ($existingSubsidios as $subsidio) {
             Subsidios::where('id', $subsidio['id'])->delete();
         }
+    }
+
+    private function actualizarDocumentacion($personaId, $data)
+    {
+        $existingDocumentacion = Documentacion::where('persona_id', $personaId)->get()->keyBy('id')->toArray();
+
+        foreach ($data as $doc) {
+            if (isset($doc['id'])) {
+                if (isset($existingDocumentacion[$doc['id']])) {
+                    Documentacion::where('id', $doc['id'])->update($doc);
+                    unset($existingDocumentacion[$doc['id']]);
+                } else {
+                    $doc['persona_id'] = $personaId;
+                    Documentacion::create($doc);
+                }
+            } else {
+                $doc['persona_id'] = $personaId;
+                Documentacion::create($doc);
+            }
+        }
+
+        foreach ($existingDocumentacion as $doc) {
+            Documentacion::where('id', $doc['id'])->delete();
+        }
+    }
+
+    private function eliminarFamiliares($personaId)
+    {
+        Familiares::where('persona_id', $personaId)->delete();
+    }
+
+    private function eliminarSubsidios($personaId)
+    {
+        Subsidios::where('persona_id', $personaId)->delete();
+    }
+
+    private function eliminarDocumentacion($personaId)
+    {
+        Documentacion::where('persona_id', $personaId)->delete();
     }
 
 

@@ -26,7 +26,7 @@ class PersonaRequest extends FormRequest
     {
         return [
             //PERSONA
-            'persona.legajo' => 'required|integer|unique:persona', 
+            'persona.legajo' => 'required|integer|unique:persona',
             'persona.fecha_afiliacion' => 'nullable|date',
             'persona.nombre' => 'required|string',
             'persona.apellido' => 'required|string',
@@ -34,13 +34,13 @@ class PersonaRequest extends FormRequest
             'persona.fecha_nacimiento' => 'nullable|date',
             'persona.estado_civil_id' => 'nullable|exists:estado_civil,id', // Referencia
             'persona.tipo_documento' => 'nullable|string',
-            'persona.dni' => 'required|integer|unique:persona', 
-            'persona.cuil' => 'nullable|string|unique:persona', 
-            'persona.email' => 'nullable|email|unique:persona', 
+            'persona.dni' => 'required|integer|unique:persona',
+            'persona.cuil' => 'nullable|string|unique:persona',
+            'persona.email' => 'nullable|email|unique:persona',
             'persona.telefono' => 'nullable|integer',
             'persona.nacionalidad_id' => 'nullable|exists:nacionalidad,id',
-            'persona.estados_id' => 'required|exists:estados,id', 
-            
+            'persona.estados_id' => 'required|exists:estados,id',
+
             //DOMICILIO
             'domicilio.provincia_id'=>'nullable|integer',
             'domicilio.localidad_id'=>'nullable|integer',
@@ -50,9 +50,8 @@ class PersonaRequest extends FormRequest
             'domicilio.codigo_postal' => 'nullable|integer',
 
             //DATOS LABORALES
-      
+
             'datos_laborales.carga_horaria' => 'nullable|string',
-            'datos_laborales.telefono_laboral' => 'nullable|integer',
             'datos_laborales.fecha_ingreso' => 'nullable|date',
             'datos_laborales.email' => 'nullable|email',
             'datos_laborales.tramo_id' => 'nullable|integer',
@@ -80,13 +79,13 @@ class PersonaRequest extends FormRequest
             'subsidios.*.tipo_subsidio_id' => 'nullable|exists:tipo_subsidio,id',
             'subsidios.*.fecha_solicitud' => 'nullable|date',
             'subsidios.*.fecha_otorgamiento' => 'nullable|date|after_or_equal:subsidios.*.fecha_solicitud',
-            'subsidios.*.observaciones' => 'nullable|string|max:255'
+            'subsidios.*.observaciones' => 'nullable|string|max:255',
 
             //DOCUMENTACION
-            /*
+            'documentacion' => 'array',
             'documentacion.*.tipo_documento_id' => 'nullable|exists:tipo_documento,id',
-            'documentacion.*.archivo' => 'nullable|string|max:2048'
-            */
+            'documentacion.*.archivo' => 'nullable|string|max:2048',
+
 
 
 
@@ -122,7 +121,7 @@ class PersonaRequest extends FormRequest
             'persona.nacionalidad_id.exists' => 'La nacionalidad seleccionada no es válida.',
             'persona.estados_id.required' => 'El estado es obligatorio.',
             'persona.estados_id.exists' => 'El estado seleccionado no es válido.',
-    
+
             // DOMICILIO
             'domicilio.provincia_id.integer' => 'La provincia debe ser un número entero.',
             'domicilio.localidad_id.integer' => 'La localidad debe ser un número entero.',
@@ -130,7 +129,7 @@ class PersonaRequest extends FormRequest
             'domicilio.numero.string' => 'El número debe ser una cadena de texto.',
             'domicilio.piso.string' => 'El piso debe ser una cadena de texto.',
             'domicilio.codigo_postal.integer' => 'El código postal debe ser un número entero.',
-    
+
             // DATOS LABORALES
             'datos_laborales.carga_horaria.string' => 'La carga horaria debe ser una cadena de texto.',
             'datos_laborales.telefono_laboral.integer' => 'El teléfono laboral debe ser un número entero.',
@@ -142,11 +141,11 @@ class PersonaRequest extends FormRequest
             'datos_laborales.agencia_id.integer' => 'La agencia debe ser un número entero.',
             'datos_laborales.ugl_id.exists' => 'La UGL seleccionada no es válida.',
             'datos_laborales.tipo_contrato_id.integer' => 'El tipo de contrato debe ser un número entero.',
-    
+
             // OBRA SOCIAL
             'obra_social.nombre.string' => 'El nombre de la obra social debe ser una cadena de texto.',
             'obra_social.tipo.string' => 'El tipo de obra social debe ser una cadena de texto.',
-    
+
             // FAMILIARES
             'familiares.*.nombre.required' => 'El nombre del familiar es obligatorio.',
             'familiares.*.nombre.string' => 'El nombre del familiar debe ser una cadena de texto.',
@@ -157,7 +156,7 @@ class PersonaRequest extends FormRequest
             'familiares.*.documento.integer' => 'El documento del familiar debe ser un número entero.',
             'familiares.*.parentesco_id.required' => 'El parentesco del familiar es obligatorio.',
             'familiares.*.parentesco_id.exists' => 'El parentesco del familiar seleccionado no es válido.',
-    
+
             // DOCUMENTACION
             'documentacion.*.tipo_documento_id.exists' => 'El tipo de documento seleccionado no es válido.',
             'documentacion.*.archivo.file' => 'El archivo debe ser un archivo válido.',

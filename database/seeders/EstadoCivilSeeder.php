@@ -10,13 +10,12 @@ class EstadoCivilSeeder extends Seeder
     public function run(): void
     {
         DB::table('estado_civil')->insert([
-            ['nombre' => 'APOYO ESCOLAR'],
-            ['nombre' => 'APOYO SECUNDARIO'],
-            ['nombre' => 'APOYO TRABAJADOR/UNIVERSITARIO'],
-            ['nombre' => 'CASAMIENTO'],
-            ['nombre' => 'FALLECIMIENTO DE FAMILIAR DIRECTO'],
-            ['nombre' => 'FALLECIMIENTO DEL TITULAR'],
-            ['nombre' => 'NACIMIENTO']
+            ['nombre' => 'CASADO'],
+            ['nombre' => 'CONCUBINO'],
+            ['nombre' => 'DIVORCIADO'],
+            ['nombre' => 'SOLTERO'],
+            ['nombre' => 'VIUDO'],
+
         ]);
     }
 }
