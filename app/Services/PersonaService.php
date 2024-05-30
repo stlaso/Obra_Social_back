@@ -20,6 +20,19 @@ class PersonaService
         return $persona;
     }
 
+    public function verPersona($id)
+    {
+
+        $persona = Persona::with([
+            'domicilios',
+            'datosLaborales',
+            'obraSociales',
+            'familiares',
+            'documentaciones'
+        ])->findOrFail($id);
+        return   $persona;
+    }
+
     public function personaCrear($data)
     {
         DB::beginTransaction();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\PersonaResource;
+use App\Http\Resources\PersonaShowResource;
 use App\Services\PersonaService;
 use App\Http\Requests\PersonaRequest;
 use App\Exceptions\CustomizeException;
@@ -25,7 +26,7 @@ class PersonaController extends Controller
         $persona=$this->personaService->personaLista();
         return PersonaResource::collection($persona);
     }
-    
+
     public function store(PersonaRequest $request)
     {
         try {
@@ -40,24 +41,32 @@ class PersonaController extends Controller
     }
 
     public function update(PersonaRequest $request, $personaId)
-{
-    try {
-        $validated = $request->validated();
-        $persona = $this->personaService->personaActualizar($personaId, $validated);
+    {
+        try {
+            $validated = $request->validated();
+            $persona = $this->personaService->personaActualizar($personaId, $validated);
 
-        if (!$persona) {
+            if (!$persona) {
+                return response()->json([
+                    "message" => "Persona no encontrada",
+                ], 404);
+            }
+
             return response()->json([
-                "message" => "Persona no encontrada",
-            ], 404);
+                "message" => "Persona actualizada exitosamente",
+            ], 200);
+
+        } catch (\Exception $e) {
+            throw new CustomizeException($e->getMessage(), \Illuminate\Http\Response::HTTP_INTERNAL_SERVER_ERROR, $e);
         }
-
-        return response()->json([
-            "message" => "Persona actualizada exitosamente",
-        ], 200);
-
-    } catch (\Exception $e) {
-        throw new CustomizeException($e->getMessage(), \Illuminate\Http\Response::HTTP_INTERNAL_SERVER_ERROR, $e);
     }
-}
+
+
+    public function show($id)
+    {
+        $persona=$this->personaService->verPersona($id);
+        return new PersonaShowResource($persona);
+    }
+
 }
 
