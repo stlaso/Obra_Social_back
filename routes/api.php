@@ -1,4 +1,4 @@
-<?php
+;<?php
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +10,7 @@ use App\Http\Controllers\UglController;
 use App\Http\Controllers\SeccionalController;
 use App\Http\Controllers\EstadoCivilController;
 use App\Http\Controllers\AgenciaController;
+use App\Http\Controllers\SubsidioController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -33,3 +34,4 @@ Route::apiResource('ugl', UglController::class);
 Route::apiResource('seccional', SeccionalController::class);
 Route::apiResource('estadocivil', EstadoCivilController::class);
 Route::apiResource('agencia', AgenciaController::class);
+Route::apiResource('subsidio', SubsidioController::class);

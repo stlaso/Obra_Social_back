@@ -4,12 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\SubsidiosService;
-use App\Http\Resources\SubsidiosResource;
+use App\Http\Resources\SubsidioResource;
 
-class Subsidios extends Controller
+class SubsidioController extends Controller
 {
-    protected $SubsidiosService;
-
     public function __construct(SubsidiosService $SubsidiosService)
     {
         $this->SubsidiosService = $SubsidiosService;
@@ -18,6 +16,8 @@ class Subsidios extends Controller
     public function index()
     {
         $Subsidios=$this->SubsidiosService->SubsidiosLista();
-        return SubsidiosResource::collection($Subsidios);
+        return SubsidioResource::collection($Subsidios);
     }
 }
+
+

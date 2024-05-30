@@ -1,13 +1,13 @@
 <?php
 
 namespace App\Services;
-use App\Models\Subsidios;
+use App\Models\TipoSubsidio;
 
 class SubsidiosService
 {
     public function SubsidiosLista()
     {
-        $Subsidios = Subsidios::all();
+        $Subsidios = TipoSubsidio::all();
         return $Subsidios;
     }
 }
