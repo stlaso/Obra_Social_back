@@ -37,6 +37,7 @@ class SeccionalSeeder extends Seeder
             ['nombre' => 'CHIVILCOY'],
             ['nombre' => 'AZUL'],
             ['nombre' => 'NACIONAL'],
+            ['nombre' => 'NEUQUEN'],
             ['nombre' => 'CATAMARCA'],
             ['nombre' => 'CHACO'],
             ['nombre' => 'TIERRA DEL FUEGO']

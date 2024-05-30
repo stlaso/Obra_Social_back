@@ -12,7 +12,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class EstadoCivil extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $table='estado_civil';
 

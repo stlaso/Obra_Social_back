@@ -38,5 +38,26 @@ class PersonaController extends Controller
             throw new CustomizeException($e->getMessage(), \Illuminate\Http\Response::HTTP_INTERNAL_SERVER_ERROR, $e);
         }
     }
+
+    public function update(PersonaRequest $request, $personaId)
+{
+    try {
+        $validated = $request->validated();
+        $persona = $this->personaService->personaActualizar($personaId, $validated);
+
+        if (!$persona) {
+            return response()->json([
+                "message" => "Persona no encontrada",
+            ], 404);
+        }
+
+        return response()->json([
+            "message" => "Persona actualizada exitosamente",
+        ], 200);
+
+    } catch (\Exception $e) {
+        throw new CustomizeException($e->getMessage(), \Illuminate\Http\Response::HTTP_INTERNAL_SERVER_ERROR, $e);
+    }
+}
 }
 

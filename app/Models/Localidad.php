@@ -13,7 +13,7 @@ class Localidad extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table='Localidad';
+    protected $table='localidad';
 
     protected $guarded = [];
 

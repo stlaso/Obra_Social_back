@@ -27,6 +27,8 @@ class DatabaseSeeder extends Seeder
             SeccionalSeeder::class,
             UGLSeeder::class,
             ProvinciaSeeder::class,
+            LocalidadSeeder::class,
+            AgenciaSeed::class
 
         ]);
     }

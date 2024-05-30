@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre');
             $table->string('domicilio_trabajo')->nullable();
+            $table->string('telefono_laboral')->nullable();
             $table->unsignedBigInteger('ugl_id')->nullable();
             $table->foreign('ugl_id')->references('id')->on('tipo_ugl');
             $table->timestamps();

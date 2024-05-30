@@ -12,7 +12,7 @@ class Provincia extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table='provincias';
+    protected $table='provincia';
 
     protected $guarded = [];
 
