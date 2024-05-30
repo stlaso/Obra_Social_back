@@ -309,5 +309,13 @@ class PersonaService
     }
 
 
+    public function eliminarPersona($id)
+    {
+        $persona=Persona::findOrFail($id);
+        $persona->estados_id=2;
+        $persona->save();
+        return $persona;
+    }
+
 
 }
