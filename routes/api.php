@@ -13,6 +13,10 @@ use App\Http\Controllers\AgenciaController;
 use App\Http\Controllers\SubsidioController;
 use App\Http\Controllers\ProvinciaController;
 use App\Http\Controllers\FamiliaController;
+use App\Http\Controllers\TipoDocumentacionController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -38,3 +42,4 @@ Route::apiResource('estadocivil', EstadoCivilController::class);
 Route::apiResource('agencia', AgenciaController::class);
 Route::apiResource('subsidio', SubsidioController::class);
 Route::apiResource('familia', FamiliaController::class);
+Route::apiResource('documentacion', TipoDocumentacionController::class);
