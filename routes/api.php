@@ -12,6 +12,7 @@ use App\Http\Controllers\EstadoCivilController;
 use App\Http\Controllers\AgenciaController;
 use App\Http\Controllers\SubsidioController;
 use App\Http\Controllers\ProvinciaController;
+use App\Http\Controllers\FamiliaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -36,3 +37,4 @@ Route::apiResource('seccional', SeccionalController::class);
 Route::apiResource('estadocivil', EstadoCivilController::class);
 Route::apiResource('agencia', AgenciaController::class);
 Route::apiResource('subsidio', SubsidioController::class);
+Route::apiResource('familia', FamiliaController::class);
