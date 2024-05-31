@@ -57,7 +57,7 @@ class PersonaService
                 $data['persona']['obra_social_id'] = $obraSocial;
             }
 
-
+            $persona['estados_id']=1;
             $persona = Persona::create($data['persona']);
 
 
