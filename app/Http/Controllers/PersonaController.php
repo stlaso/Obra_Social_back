@@ -7,6 +7,7 @@ use App\Http\Resources\PersonaResource;
 use App\Http\Resources\PersonaShowResource;
 use App\Services\PersonaService;
 use App\Http\Requests\PersonaRequest;
+use App\Http\Requests\PersonaEditRequest;
 use App\Exceptions\CustomizeException;
 
 
@@ -40,9 +41,10 @@ class PersonaController extends Controller
         }
     }
 
-    public function update(PersonaRequest $request, $personaId)
+    public function update(PersonaEditRequest $request, $personaId)
     {
         try {
+
             $validated = $request->validated();
             $persona = $this->personaService->personaActualizar($personaId, $validated);
 

@@ -36,7 +36,7 @@ class PersonaRequest extends FormRequest
             'persona.tipo_documento' => 'nullable|string',
             'persona.dni' => 'required|integer|unique:persona',
             'persona.cuil' => 'nullable|string|unique:persona',
-            'persona.email' => 'nullable|email|unique:persona',
+            'persona.email' => 'nullable|email',
             'persona.telefono' => 'nullable|integer',
             'persona.nacionalidad_id' => 'nullable|exists:nacionalidad,id',
             'persona.estados_id' => 'required|exists:estados,id',

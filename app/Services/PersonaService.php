@@ -146,12 +146,12 @@ class PersonaService
 
         try {
             $persona = Persona::findOrFail($personaId);
-
+            // Manejo de domicilio
             if (isset($data['domicilio'])) {
                 if ($persona->domicilio) {
                     $persona->domicilio->update($data['domicilio']);
                 } else {
-                    $domicilio = $this->domicilio($data['domicilio']);
+                    $domicilio = $this->crearDomicilio($data['domicilio']);
                     $persona->domicilio_id = $domicilio;
                 }
             } else {
@@ -161,52 +161,59 @@ class PersonaService
                 }
             }
 
+            // Manejo de datos laborales
             if (isset($data['datos_laborales'])) {
                 if ($persona->datosLaborales) {
                     $persona->datosLaborales->update($data['datos_laborales']);
                 } else {
-                    $datosLaborales = $this->datosLaborales($data['datos_laborales']);
+                    $datosLaborales = $this->crearDatosLaborales($data['datos_laborales']);
                     $persona->datos_laborales_id = $datosLaborales;
                 }
             } else {
                 if ($persona->datosLaborales) {
-                    $persona->datosLaborales->delete();
+                    // Desasociar la relación antes de eliminar
                     $persona->datos_laborales_id = null;
+                    $persona->save();
+                    $persona->datosLaborales->delete();
                 }
             }
 
+            // Manejo de obra social
             if (isset($data['obra_social'])) {
                 if ($persona->obraSocial) {
                     $persona->obraSocial->update($data['obra_social']);
                 } else {
-                    $obraSocial = $this->obraSocial($data['obra_social']);
+                    $obraSocial = $this->crearObraSocial($data['obra_social']);
                     $persona->obra_social_id = $obraSocial;
                 }
             } else {
                 if ($persona->obraSocial) {
-                    $persona->obraSocial->delete();
                     $persona->obra_social_id = null;
+                    $persona->save();
+                    $persona->obraSocial->delete();
                 }
             }
 
+            // Actualizar datos de la persona
             $persona->update($data['persona']);
 
+            // Manejo de familiares
             if (isset($data['familiares'])) {
                 $this->actualizarFamiliares($persona->id, $data['familiares']);
             } else {
                 $this->eliminarFamiliares($persona->id);
             }
 
-            // Actualizar subsidios
+            // Manejo de subsidios
             if (isset($data['subsidios'])) {
                 $this->actualizarSubsidios($persona->id, $data['subsidios']);
             } else {
                 $this->eliminarSubsidios($persona->id);
             }
 
-            // Actualizar documentacion
+            // Manejo de documentación
             if (isset($data['documentacion'])) {
-                $this->documentacion($persona->id, $data['documentacion']);
+                $this->actualizarDocumentacion($persona->id, $data['documentacion']);
             } else {
                 $this->eliminarDocumentacion($persona->id);
             }
@@ -220,6 +227,8 @@ class PersonaService
             throw $e;
         }
     }
+
+
 
     private function actualizarFamiliares($personaId, $data)
     {
