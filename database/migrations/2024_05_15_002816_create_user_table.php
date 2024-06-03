@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('username')->unique();
-            $table->string('contraseña');
-            $table->integer('telefono');
+            $table->string('password');
+            $table->string('telefono');
             $table->unsignedBigInteger('seccional_id');
             $table->string('correo')->unique();
             $table->unsignedBigInteger('roles_id');
