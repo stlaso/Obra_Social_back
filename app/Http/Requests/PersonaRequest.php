@@ -39,6 +39,7 @@ class PersonaRequest extends FormRequest
             'persona.email' => 'nullable|email',
             'persona.telefono' => 'nullable|integer',
             'persona.nacionalidad_id' => 'nullable|exists:nacionalidad,id',
+            'user_id'=>'required|integer',
 
             //DOMICILIO
             'domicilio.provincia_id'=>'nullable|integer',
@@ -47,6 +48,7 @@ class PersonaRequest extends FormRequest
             'domicilio.numero' => 'nullable|string',
             'domicilio.piso' => 'nullable|string',
             'domicilio.codigo_postal' => 'nullable|integer',
+            'user_id'=>'required|integer',
 
             //DATOS LABORALES
 
@@ -58,11 +60,13 @@ class PersonaRequest extends FormRequest
             'datos_laborales.seccional_id' => 'nullable|exists:seccional,id',
             'datos_laborales.agencia_id'=>'nullable|integer',
             'datos_laborales.tipo_contrato_id' => 'nullable|integer',
+            'user_id'=>'required|integer',
 
 
             //OBRA SOCIAL
             'obra_social.tipo_obra' => 'nullable|string',
             'obra_social.obra_social' => 'nullable|string',
+            'user_id'=>'required|integer',
 
             //Familiares
 
@@ -72,6 +76,7 @@ class PersonaRequest extends FormRequest
             'familiares.*.tipo_documento' => 'nullable|string|max:255',
             'familiares.*.documento' => 'nullable|string',
             'familiares.*.parentesco_id' => 'nullable|exists:parentesco,id',
+            'user_id'=>'required|integer',
 
             //SUBSIDIOS
             'subsidios' => 'array',
@@ -79,12 +84,13 @@ class PersonaRequest extends FormRequest
             'subsidios.*.fecha_solicitud' => 'nullable|date',
             'subsidios.*.fecha_otorgamiento' => 'nullable|date|after_or_equal:subsidios.*.fecha_solicitud',
             'subsidios.*.observaciones' => 'nullable|string|max:255',
+            'user_id'=>'required|integer',
 
             //DOCUMENTACION
             'documentacion' => 'array',
             'documentacion.*.tipo_documento_id' => 'nullable|exists:tipo_documento,id',
             'documentacion.*.archivo' => 'nullable|string|max:2048',
-
+            'user_id'=>'required|integer'
 
 
 

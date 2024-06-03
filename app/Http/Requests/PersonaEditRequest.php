@@ -36,7 +36,7 @@ class PersonaEditRequest extends FormRequest
             'persona.tipo_documento' => 'nullable|string',
             'persona.dni' => [
                 'required',
-                'integer',
+                'string',
                 Rule::unique('persona')->ignore($id)
             ],
             'persona.cuil' => [
@@ -48,6 +48,7 @@ class PersonaEditRequest extends FormRequest
             'persona.telefono' => 'nullable|integer',
             'persona.nacionalidad_id' => 'nullable|exists:nacionalidad,id',
             'persona.estados_id' => 'required|exists:estados,id',
+            'user_id'=>'required|integer',
 
               //DOMICILIO
               'domicilio.provincia_id'=>'nullable|integer',
@@ -56,6 +57,7 @@ class PersonaEditRequest extends FormRequest
               'domicilio.numero' => 'nullable|string',
               'domicilio.piso' => 'nullable|string',
               'domicilio.codigo_postal' => 'nullable|integer',
+              'user_id'=>'required|integer',
 
               //DATOS LABORALES
 
@@ -67,11 +69,13 @@ class PersonaEditRequest extends FormRequest
               'datos_laborales.seccional_id' => 'nullable|exists:seccional,id',
               'datos_laborales.agencia_id'=>'nullable|integer',
               'datos_laborales.tipo_contrato_id' => 'nullable|integer',
+              'user_id'=>'required|integer',
 
 
               //OBRA SOCIAL
               'obra_social.tipo_obra' => 'nullable|string',
               'obra_social.obra_social' => 'nullable|string',
+              'user_id'=>'required|integer',
 
               //Familiares
 
@@ -79,8 +83,9 @@ class PersonaEditRequest extends FormRequest
               'familiares.*.nombre' => 'nullable|string|max:255',
               'familiares.*.fecha_nacimiento' => 'nullable|date',
               'familiares.*.tipo_documento' => 'nullable|string|max:255',
-              'familiares.*.documento' => 'nullable|integer',
+              'familiares.*.documento' => 'nullable|string',
               'familiares.*.parentesco_id' => 'nullable|exists:parentesco,id',
+              'user_id'=>'required|integer',
 
               //SUBSIDIOS
               'subsidios' => 'array',
@@ -88,11 +93,13 @@ class PersonaEditRequest extends FormRequest
               'subsidios.*.fecha_solicitud' => 'nullable|date',
               'subsidios.*.fecha_otorgamiento' => 'nullable|date|after_or_equal:subsidios.*.fecha_solicitud',
               'subsidios.*.observaciones' => 'nullable|string|max:255',
+              'user_id'=>'required|integer',
 
               //DOCUMENTACION
               'documentacion' => 'array',
               'documentacion.*.tipo_documento_id' => 'nullable|exists:tipo_documento,id',
               'documentacion.*.archivo' => 'nullable|string|max:2048',
+              'user_id'=>'required|integer',
 
         ];
     }

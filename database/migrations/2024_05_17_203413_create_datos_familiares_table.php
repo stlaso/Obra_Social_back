@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('documento')->nullable();
             $table->unsignedBigInteger('parentesco_id');
             $table->unsignedBigInteger('persona_id');
+            $table->unsignedBigInteger('users_id')->nullable();
+            $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('parentesco_id')->references('id')->on('parentesco');
             $table->foreign('persona_id')->references('id')->on('persona');
             $table->timestamps();

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('carga_horaria')->nullable();
             $table->date('fecha_ingreso')->nullable();
             $table->string('email')->nullable();
+            $table->unsignedBigInteger('users_id')->nullable();
+            $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('tramo_id')->references('id')->on('tramo');
             $table->foreign('seccional_id')->references('id')->on('seccional');
             $table->foreign('agencia_id')->references('id')->on('agencia');

@@ -17,7 +17,9 @@ return new class extends Migration
             $table->date('fecha_solicitud')->nullable();
             $table->date('fecha_otorgamiento')->nullable();
             $table->string('observaciones')->nullable();
-            $table->unsignedBigInteger('persona_id'); 
+            $table->unsignedBigInteger('users_id')->nullable();
+            $table->foreign('users_id')->references('id')->on('users');
+            $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('persona');
             $table->foreign('tipo_subsidio_id')->references('id')->on('tipo_subsidio');
             $table->timestamps();

@@ -30,6 +30,8 @@ return new class extends Migration
             $table->unsignedBigInteger('estados_id')->default(1);
             $table->unsignedBigInteger('estado_civil_id')->nullable();
             $table->unsignedBigInteger('sexo_id')->nullable();
+            $table->unsignedBigInteger('users_id')->nullable();
+            $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('estado_civil_id')->references('id')->on('estado_civil');
             $table->foreign('sexo_id')->references('id')->on('sexo');
             $table->foreign('datos_laborales_id')->references('id')->on('datos_laborales');
