@@ -28,7 +28,7 @@ class DatosFamiliaresRequest extends FormRequest
             'fecha_nacimiento' => 'date',
             'parentesco' => 'string|max:255',
             'documentacion_documento' => 'string|max:255',
-            'documento' => 'integer',
+            'documento' => 'string',
             'persona_id' => 'required|exists:persona,id',
         ];
     }

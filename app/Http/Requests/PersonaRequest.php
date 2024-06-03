@@ -34,7 +34,7 @@ class PersonaRequest extends FormRequest
             'persona.fecha_nacimiento' => 'nullable|date',
             'persona.estado_civil_id' => 'nullable|exists:estado_civil,id', // Referencia
             'persona.tipo_documento' => 'nullable|string',
-            'persona.dni' => 'required|integer|unique:persona',
+            'persona.dni' => 'required|string|unique:persona',
             'persona.cuil' => 'nullable|string|unique:persona',
             'persona.email' => 'nullable|email',
             'persona.telefono' => 'nullable|integer',
@@ -71,7 +71,7 @@ class PersonaRequest extends FormRequest
             'familiares.*.nombre' => 'nullable|string|max:255',
             'familiares.*.fecha_nacimiento' => 'nullable|date',
             'familiares.*.tipo_documento' => 'nullable|string|max:255',
-            'familiares.*.documento' => 'nullable|integer',
+            'familiares.*.documento' => 'nullable|string',
             'familiares.*.parentesco_id' => 'nullable|exists:parentesco,id',
 
             //SUBSIDIOS
