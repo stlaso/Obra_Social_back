@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('nombre')->nullable();
             $table->date('fecha_nacimiento')->nullable();
             $table->string('tipo_documento')->nullable();
-            $table->integer('documento')->nullable();
+            $table->string('documento')->nullable();
             $table->unsignedBigInteger('parentesco_id');
-            $table->unsignedBigInteger('persona_id'); 
+            $table->unsignedBigInteger('persona_id');
             $table->foreign('parentesco_id')->references('id')->on('parentesco');
             $table->foreign('persona_id')->references('id')->on('persona');
             $table->timestamps();

@@ -19,14 +19,14 @@ return new class extends Migration
             $table->string('apellido');
             $table->date('fecha_nacimiento')->nullable();
             $table->string('tipo_documento')->nullable();;
-            $table->integer('dni')->unique();
+            $table->string('dni')->unique();
             $table->string('cuil', 20)->nullable();
             $table->string('email')->nullable();
             $table->integer('telefono')->nullable();
             $table->unsignedBigInteger('nacionalidad_id')->nullable();;
-            $table->unsignedBigInteger('domicilio_id')->nullable();; 
-            $table->unsignedBigInteger('datos_laborales_id')->nullable(); 
-            $table->unsignedBigInteger('obra_social_id')->nullable(); 
+            $table->unsignedBigInteger('domicilio_id')->nullable();;
+            $table->unsignedBigInteger('datos_laborales_id')->nullable();
+            $table->unsignedBigInteger('obra_social_id')->nullable();
             $table->unsignedBigInteger('estados_id');
             $table->unsignedBigInteger('estado_civil_id')->nullable();
             $table->unsignedBigInteger('sexo_id')->nullable();
@@ -35,7 +35,7 @@ return new class extends Migration
             $table->foreign('datos_laborales_id')->references('id')->on('datos_laborales');
             $table->foreign('obra_social_id')->references('id')->on('obra_social');
             $table->foreign('domicilio_id')->references('id')->on('domicilio');
-            $table->foreign('nacionalidad_id')->references('id')->on('nacionalidad'); 
+            $table->foreign('nacionalidad_id')->references('id')->on('nacionalidad');
             $table->foreign('estados_id')->references('id')->on('estados');
             $table->softDeletes();
             $table->timestamps();
