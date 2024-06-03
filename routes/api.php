@@ -14,6 +14,8 @@ use App\Http\Controllers\SubsidioController;
 use App\Http\Controllers\ProvinciaController;
 use App\Http\Controllers\FamiliaController;
 use App\Http\Controllers\TipoDocumentacionController;
+use App\Http\Controllers\SexoController;
+use App\Http\Controllers\TramoController;
 
 
 
@@ -43,3 +45,7 @@ Route::apiResource('agencia', AgenciaController::class);
 Route::apiResource('subsidio', SubsidioController::class);
 Route::apiResource('familia', FamiliaController::class);
 Route::apiResource('documentacion', TipoDocumentacionController::class);
+Route::apiResource('tramo', TramoController::class);
+Route::apiResource('sexo', SexoController::class);
+
+
