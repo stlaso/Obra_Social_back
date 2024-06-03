@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,12 +19,12 @@ class User extends Authenticatable
         'nombre',
         'apellido',
         'username',
-        'contraseña',
+        'password',
         'telefono',
         'correo',
         'roles_id',
         'estados_id',
-        'agencia_id'
+        'seccional_id'
     ];
 
     /**
@@ -51,11 +50,11 @@ class User extends Authenticatable
     // Relaciones
     public function rol()
     {
-        return $this->belongsTo(Rol::class);
+        return $this->belongsTo(Rol::class, 'roles_id');
     }
 
     public function seccional()
     {
-        return $this->belongsTo(Seccional::class);
+        return $this->belongsTo(Seccional::class, 'seccional_id');
     }
 }

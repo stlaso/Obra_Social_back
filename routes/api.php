@@ -16,6 +16,8 @@ use App\Http\Controllers\FamiliaController;
 use App\Http\Controllers\TipoDocumentacionController;
 use App\Http\Controllers\SexoController;
 use App\Http\Controllers\TramoController;
+use App\Http\Controllers\AuthController;
+
 
 
 
@@ -47,5 +49,7 @@ Route::apiResource('familia', FamiliaController::class);
 Route::apiResource('documentacion', TipoDocumentacionController::class);
 Route::apiResource('tramo', TramoController::class);
 Route::apiResource('sexo', SexoController::class);
+Route::post('/registrar', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 

@@ -27,7 +27,7 @@ return new class extends Migration
             $table->unsignedBigInteger('domicilio_id')->nullable();;
             $table->unsignedBigInteger('datos_laborales_id')->nullable();
             $table->unsignedBigInteger('obra_social_id')->nullable();
-            $table->unsignedBigInteger('estados_id');
+            $table->unsignedBigInteger('estados_id')->default(1);
             $table->unsignedBigInteger('estado_civil_id')->nullable();
             $table->unsignedBigInteger('sexo_id')->nullable();
             $table->foreign('estado_civil_id')->references('id')->on('estado_civil');

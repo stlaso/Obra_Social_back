@@ -39,7 +39,6 @@ class PersonaRequest extends FormRequest
             'persona.email' => 'nullable|email',
             'persona.telefono' => 'nullable|integer',
             'persona.nacionalidad_id' => 'nullable|exists:nacionalidad,id',
-            'persona.estados_id' => 'nullable|integer',
 
             //DOMICILIO
             'domicilio.provincia_id'=>'nullable|integer',
