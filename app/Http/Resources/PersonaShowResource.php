@@ -30,6 +30,7 @@ class PersonaShowResource extends JsonResource
                     'telefono' => $this->telefono ?? null,
                     'nacionalidad_id' => $this->nacionalidad_id ?? null,
                     'estados_id' => $this->estados_id ?? null,
+                    'user_id'=>$this->user_id ?? null,
                 ],
                 'domicilios' => $this->when($this->domicilios, function () {
                     return [

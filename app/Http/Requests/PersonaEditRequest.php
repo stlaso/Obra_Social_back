@@ -57,7 +57,7 @@ class PersonaEditRequest extends FormRequest
               'domicilio.numero' => 'nullable|string',
               'domicilio.piso' => 'nullable|string',
               'domicilio.codigo_postal' => 'nullable|integer',
-              'user_id'=>'required|integer',
+              'user_id'=>'nullable|integer',
 
               //DATOS LABORALES
 
@@ -69,13 +69,13 @@ class PersonaEditRequest extends FormRequest
               'datos_laborales.seccional_id' => 'nullable|exists:seccional,id',
               'datos_laborales.agencia_id'=>'nullable|integer',
               'datos_laborales.tipo_contrato_id' => 'nullable|integer',
-              'user_id'=>'required|integer',
+              'user_id'=>'nullable|integer',
 
 
               //OBRA SOCIAL
               'obra_social.tipo_obra' => 'nullable|string',
               'obra_social.obra_social' => 'nullable|string',
-              'user_id'=>'required|integer',
+              'user_id'=>'nullable|integer',
 
               //Familiares
 
@@ -85,7 +85,7 @@ class PersonaEditRequest extends FormRequest
               'familiares.*.tipo_documento' => 'nullable|string|max:255',
               'familiares.*.documento' => 'nullable|string',
               'familiares.*.parentesco_id' => 'nullable|exists:parentesco,id',
-              'user_id'=>'required|integer',
+              'user_id'=>'nullable|integer',
 
               //SUBSIDIOS
               'subsidios' => 'array',
@@ -93,13 +93,13 @@ class PersonaEditRequest extends FormRequest
               'subsidios.*.fecha_solicitud' => 'nullable|date',
               'subsidios.*.fecha_otorgamiento' => 'nullable|date|after_or_equal:subsidios.*.fecha_solicitud',
               'subsidios.*.observaciones' => 'nullable|string|max:255',
-              'user_id'=>'required|integer',
+              'user_id'=>'nullable|integer',
 
               //DOCUMENTACION
               'documentacion' => 'array',
               'documentacion.*.tipo_documento_id' => 'nullable|exists:tipo_documento,id',
               'documentacion.*.archivo' => 'nullable|string|max:2048',
-              'user_id'=>'required|integer',
+              'user_id'=>'nullable|integer',
 
         ];
     }
