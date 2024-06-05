@@ -52,9 +52,7 @@ class PersonaEditRequest extends FormRequest
 
               //DOMICILIO
               'domicilio.provincia_id'=>'nullable|integer',
-              'domicilio.localidad_id'=>'nullable|integer',
-              'domicilio.calle' => 'nullable|string',
-              'domicilio.numero' => 'nullable|string',
+              'domicilio.domicilio' => 'nullable|string',
               'domicilio.piso' => 'nullable|string',
               'domicilio.codigo_postal' => 'nullable|integer',
               'user_id'=>'nullable|integer',

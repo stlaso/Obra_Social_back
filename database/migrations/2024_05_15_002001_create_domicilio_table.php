@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('domicilio', function (Blueprint $table) {
             $table->id();
-            $table->string('calle')->nullable();
-            $table->string('numero')->nullable();
-            $table->string('piso')->nullable();
+            $table->string('domicilio')->nullable();
             $table->unsignedBigInteger('provincia_id');
             $table->foreign('provincia_id')->references('id')->on('provincia');
             $table->unsignedBigInteger('localidad_id')->nullable();;

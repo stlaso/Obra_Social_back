@@ -36,9 +36,7 @@ class PersonaShowResource extends JsonResource
                     return [
                         'provincia_id' => $this->domicilios->provincia_id ?? null,
                         'localidad_id' => $this->domicilios->localidad_id ?? null,
-                        'calle' => $this->domicilios->calle ?? null,
-                        'numero' => $this->domicilios->numero ?? null,
-                        'piso' => $this->domicilios->piso ?? null,
+                        'domicilio' => $this->domicilios->domicilio ?? null,
                         'codigo_postal' => $this->domicilios->codigo_postal ?? null,
                     ];
                 }),
