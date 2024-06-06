@@ -37,7 +37,7 @@ class PersonaRequest extends FormRequest
             'persona.dni' => 'required|string|unique:persona',
             'persona.cuil' => 'nullable|string|unique:persona',
             'persona.email' => 'nullable|email',
-            'persona.telefono' => 'nullable|integer',
+            'persona.telefono' => 'nullable|string',
             'persona.nacionalidad_id' => 'nullable|exists:nacionalidad,id',
             'user_id'=>'required|integer',
 
@@ -120,7 +120,7 @@ class PersonaRequest extends FormRequest
             'persona.cuil.unique' => 'El CUIL ya está registrado.',
             'persona.email.email' => 'El correo electrónico debe ser una dirección válida.',
             'persona.email.unique' => 'El correo electrónico ya está registrado.',
-            'persona.telefono.integer' => 'El teléfono debe ser un número entero.',
+            'persona.telefono.string' => 'El teléfono debe ser un número entero.',
             'persona.nacionalidad_id.exists' => 'La nacionalidad seleccionada no es válida.',
             'persona.estados_id.required' => 'El estado es obligatorio.',
             'persona.estados_id.exists' => 'El estado seleccionado no es válido.',

@@ -45,7 +45,7 @@ class PersonaEditRequest extends FormRequest
                 Rule::unique('persona')->ignore($id)
             ],
             'persona.email' => 'nullable|email',
-            'persona.telefono' => 'nullable|integer',
+            'persona.telefono' => 'nullable|string',
             'persona.nacionalidad_id' => 'nullable|exists:nacionalidad,id',
             'persona.estados_id' => 'required|exists:estados,id',
             'user_id'=>'required|integer',

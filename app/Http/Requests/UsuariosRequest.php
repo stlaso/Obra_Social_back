@@ -28,7 +28,7 @@ class UsuariosRequest extends FormRequest
             'apellido' => 'required|string|max:255',
             'username' => 'required|string|unique:usuarios,username|max:255',
             'password' => 'required|string|max:255',
-            'telefono' => 'required|integer',
+            'telefono' => 'required|string',
             'correo' => 'required|email|unique:usuarios,correo|max:255',
             'roles_id' => 'required|exists:roles,id',
         ];

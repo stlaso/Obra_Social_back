@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('dni')->unique();
             $table->string('cuil', 20)->nullable();
             $table->string('email')->nullable();
-            $table->integer('telefono')->nullable();
+            $table->string('telefono')->nullable();
             $table->unsignedBigInteger('nacionalidad_id')->nullable();;
             $table->unsignedBigInteger('domicilio_id')->nullable();;
             $table->unsignedBigInteger('datos_laborales_id')->nullable();

@@ -31,7 +31,7 @@ class DatosLaboralesRequest extends FormRequest
             'agrupamiento' => '|string|max:255',
             'tramo' => 'integer',
             'carga_horaria' => 'string|max:255',
-            'telefono_laboral' => 'integer',
+            'telefono_laboral' => 'string',
             'fecha_ingreso' => 'date',
             'email' => 'email|max:255',
 
