@@ -10,7 +10,7 @@ class Roles extends Model
 {
     use HasFactory;
 
-    protected $table='Roles';
+    protected $table='roles';
 
     protected $guarded = [];
 

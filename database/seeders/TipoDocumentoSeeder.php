@@ -14,14 +14,14 @@ class TipoDocumentoSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('tipo_documento')->insert([ 
-            ['nombre' => 'ACTA_DEFUNCION'],
-            ['nombre' => 'CERTIFICADO_DE_MATRIMONIO'],
-            ['nombre' => 'CERTIFICADO_DE_NACIMIENTO'],
-            ['nombre' => 'CONSTANCIA_DE_ALUMNO_REGULAR'],
-            ['nombre' => 'FORMULARIO_DE_ALTA'],
-            ['nombre' => 'FOTOCOPIA_DEL_DNI'],
-            ['nombre' => 'TELEGRAMA_DE_BAJA'],
+        DB::table('tipo_documento')->insert([
+            ['nombre' => 'ACTA DEFUNCION'],
+            ['nombre' => 'CERTIFICADO DE MATRIMONIO'],
+            ['nombre' => 'CERTIFICADO DE NACIMIENTO'],
+            ['nombre' => 'CONSTANCIA DE ALUMNO REGULAR'],
+            ['nombre' => 'FORMULARIO DE ALTA'],
+            ['nombre' => 'FOTOCOPIA DEL DNI'],
+            ['nombre' => 'TELEGRAMA DE BAJA'],
         ]);
     }
 }

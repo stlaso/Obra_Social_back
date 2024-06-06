@@ -17,6 +17,8 @@ use App\Http\Controllers\TipoDocumentacionController;
 use App\Http\Controllers\SexoController;
 use App\Http\Controllers\TramoController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RolesController;
 
 
 
@@ -51,5 +53,7 @@ Route::apiResource('tramo', TramoController::class);
 Route::apiResource('sexo', SexoController::class);
 Route::post('/registrar', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::apiResource('/user', UserController::class);
+Route::apiResource('/roles',RolesController::class);
 
 

@@ -11,7 +11,7 @@ class Estado extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
+
     protected $table='estados';
 
     protected $guarded = [];
@@ -19,6 +19,11 @@ class Estado extends Model
     public function personas(): HasMany
     {
         return $this->hasMany(Persona::class, 'estados_id');
+    }
+
+    public function users(): HasMany
+    {
+        return $this->HasMany(User::class, 'estados_id');
     }
 
 
