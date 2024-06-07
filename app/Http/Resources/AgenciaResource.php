@@ -17,8 +17,8 @@ class AgenciaResource extends JsonResource
         return [
             'id' => $this->resource->id,
             'nombre' => $this->resource->nombre,
-            'domicilio_trabajo' => $this->resource->nombre,
-            'telefono_laboral' => $this->resource->nombre,
+            'domicilio_trabajo' => $this->resource->domicilio_trabajo,
+            'telefono_laboral' => $this->resource->telefono_laboral,
         ];
     }
 }

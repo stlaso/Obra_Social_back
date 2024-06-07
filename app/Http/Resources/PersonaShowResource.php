@@ -77,6 +77,17 @@ class PersonaShowResource extends JsonResource
                         ];
                     });
                 }),
+                'subsidios' => $this->when($this->subsidios, function () {
+                    return $this->subsidios->map(function ($sub) {
+                        return [
+                            'tipo_subsidio_id' => $sub->tipo_subsidio_id ?? null,
+                            'fecha_solicitud' => $sub->fecha_solicitud ?? null,
+                            'fecha_otorgamiento' => $sub->fecha_otorgamiento ?? null,
+                            'observaciones' => $sub->observaciones ?? null,
+                            'user_id' => $sub->user_id ?? null,
+                        ];
+                    });
+                }),
             ];
 
     }

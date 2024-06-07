@@ -10,6 +10,7 @@ class PersonaResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->resource->id,
             'nombre'=>$this->resource->nombre,
             'apellido'=>$this->resource->apellido,
             'cuil'=>$this->resource->cuil,

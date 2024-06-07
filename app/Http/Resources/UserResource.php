@@ -24,6 +24,8 @@ class UserResource extends JsonResource
             'rol'=>$this->resource->rol->nombre,
             'estado'=>$this->resource->estado->nombre,
             'creada'=>$this->resource->created_at,
+            'telefono'=>$this->resource->telefono,
+            'user'=>$this->resource->username
         ];
     }
 }
