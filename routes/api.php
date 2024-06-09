@@ -45,6 +45,7 @@ Route::apiResource('agrupamiento', AgrupamientoController::class);
 Route::apiResource('ugl', UglController::class);
 Route::apiResource('seccional', SeccionalController::class);
 Route::apiResource('estadocivil', EstadoCivilController::class);
+Route::get('/agenciaDatos/{id}', [AgenciaController::class,'agenciaDatos']);
 Route::apiResource('agencia', AgenciaController::class);
 Route::apiResource('subsidio', SubsidioController::class);
 Route::apiResource('familia', FamiliaController::class);
