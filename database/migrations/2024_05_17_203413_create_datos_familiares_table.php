@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('familiares', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre')->nullable();
-            $table->date('fecha_nacimiento')->nullable();
-            $table->string('tipo_documento')->nullable();
+            $table->string('nombre_familiar')->nullable();
+            $table->date('fecha_nacimiento_familiar')->nullable();
+            $table->string('tipo_documento_familiar')->nullable();
             $table->string('documento')->nullable();
             $table->unsignedBigInteger('parentesco_id');
             $table->unsignedBigInteger('persona_id');

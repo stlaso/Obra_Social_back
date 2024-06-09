@@ -61,7 +61,7 @@ class PersonaEditRequest extends FormRequest
 
               'datos_laborales.carga_horaria' => 'nullable|string',
               'datos_laborales.fecha_ingreso' => 'nullable|date',
-              'datos_laborales.email' => 'nullable|email',
+              'datos_laborales.email_laboral' => 'nullable|email',
               'datos_laborales.tramo_id' => 'nullable|integer',
               'datos_laborales.agrupamiento_id' => 'nullable|integer',
               'datos_laborales.seccional_id' => 'nullable|exists:seccional,id',
@@ -78,9 +78,9 @@ class PersonaEditRequest extends FormRequest
               //Familiares
 
               'familiares' => 'array',
-              'familiares.*.nombre' => 'nullable|string|max:255',
-              'familiares.*.fecha_nacimiento' => 'nullable|date',
-              'familiares.*.tipo_documento' => 'nullable|string|max:255',
+              'familiares.*.nombre_familiar' => 'nullable|string|max:255',
+              'familiares.*.fecha_nacimiento_familiar' => 'nullable|date',
+              'familiares.*.tipo_documento_familiar' => 'nullable|string|max:255',
               'familiares.*.documento' => 'nullable|string',
               'familiares.*.parentesco_id' => 'nullable|exists:parentesco,id',
               'user_id'=>'nullable|integer',

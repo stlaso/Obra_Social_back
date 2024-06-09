@@ -52,7 +52,7 @@ class PersonaRequest extends FormRequest
 
             'datos_laborales.carga_horaria' => 'nullable|string',
             'datos_laborales.fecha_ingreso' => 'nullable|date',
-            'datos_laborales.email' => 'nullable|email',
+            'datos_laborales.email_laboral' => 'nullable|email',
             'datos_laborales.tramo_id' => 'nullable|integer',
             'datos_laborales.agrupamiento_id' => 'nullable|integer',
             'datos_laborales.seccional_id' => 'nullable|exists:seccional,id',
@@ -69,9 +69,9 @@ class PersonaRequest extends FormRequest
             //Familiares
 
             'familiares' => 'array',
-            'familiares.*.nombre' => 'nullable|string|max:255',
+            'familiares.*.nombre_familiar' => 'nullable|string|max:255',
             'familiares.*.fecha_nacimiento' => 'nullable|date',
-            'familiares.*.tipo_documento' => 'nullable|string|max:255',
+            'familiares.*.tipo_documento_familiar' => 'nullable|string|max:255',
             'familiares.*.documento' => 'nullable|string',
             'familiares.*.parentesco_id' => 'nullable|exists:parentesco,id',
             'user_id'=>'nullable|integer',
@@ -137,7 +137,7 @@ class PersonaRequest extends FormRequest
             'datos_laborales.carga_horaria.string' => 'La carga horaria debe ser una cadena de texto.',
             'datos_laborales.telefono_laboral.integer' => 'El teléfono laboral debe ser un número entero.',
             'datos_laborales.fecha_ingreso.date' => 'La fecha de ingreso debe ser una fecha válida.',
-            'datos_laborales.email.email' => 'El correo electrónico laboral debe ser una dirección válida.',
+            'datos_laborales.email_laboral.email' => 'El correo electrónico laboral debe ser una dirección válida.',
             'datos_laborales.tramo_id.integer' => 'El tramo debe ser un número entero.',
             'datos_laborales.agrupamiento_id.integer' => 'El agrupamiento debe ser un número entero.',
             'datos_laborales.seccional_id.exists' => 'La seccional seleccionada no es válida.',
@@ -150,12 +150,12 @@ class PersonaRequest extends FormRequest
             'obra_social.tipo.string' => 'El tipo de obra social debe ser una cadena de texto.',
 
             // FAMILIARES
-            'familiares.*.nombre.required' => 'El nombre del familiar es obligatorio.',
-            'familiares.*.nombre.string' => 'El nombre del familiar debe ser una cadena de texto.',
-            'familiares.*.nombre.max' => 'El nombre del familiar no puede tener más de 255 caracteres.',
-            'familiares.*.fecha_nacimiento.date' => 'La fecha de nacimiento del familiar debe ser una fecha válida.',
-            'familiares.*.tipo_documento.string' => 'El tipo de documento del familiar debe ser una cadena de texto.',
-            'familiares.*.tipo_documento.max' => 'El tipo de documento del familiar no puede tener más de 255 caracteres.',
+            'familiares.*.nombre_familiar.required' => 'El nombre del familiar es obligatorio.',
+            'familiares.*.nombre_familiar.string' => 'El nombre del familiar debe ser una cadena de texto.',
+            'familiares.*.nombre_familiar.max' => 'El nombre del familiar no puede tener más de 255 caracteres.',
+            'familiares.*.fecha_nacimiento_familiar.date' => 'La fecha de nacimiento del familiar debe ser una fecha válida.',
+            'familiares.*.tipo_documento_familiar.string' => 'El tipo de documento del familiar debe ser una cadena de texto.',
+            'familiares.*.tipo_documento_familiar.max' => 'El tipo de documento del familiar no puede tener más de 255 caracteres.',
             'familiares.*.documento.integer' => 'El documento del familiar debe ser un número entero.',
             'familiares.*.parentesco_id.required' => 'El parentesco del familiar es obligatorio.',
             'familiares.*.parentesco_id.exists' => 'El parentesco del familiar seleccionado no es válido.',

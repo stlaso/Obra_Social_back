@@ -20,7 +20,7 @@ class PersonaShowResource extends JsonResource
                     'fecha_afiliacion' => $this->fecha_afiliacion ?? null,
                     'nombre' => $this->nombre,
                     'apellido' => $this->apellido,
-                    'sexo_id' => $this->sexo_id ?? null,
+                    'sexo_id' => $this->sexo_id ?? null, // 'sexo' => $this->sexo ? $this->sexo->nombre : null, (Algo como esto seria)
                     'fecha_nacimiento' => $this->fecha_nacimiento ?? null,
                     'estado_civil_id' => $this->estado_civil_id ?? null,
                     'tipo_documento' => $this->tipo_documento ?? null,
@@ -34,9 +34,9 @@ class PersonaShowResource extends JsonResource
                 ],
                 'domicilios' => $this->when($this->domicilios, function () {
                     return [
+                        'domicilio' => $this->domicilios->domicilio ?? null,
                         'provincia_id' => $this->domicilios->provincia_id ?? null,
                         'localidad_id' => $this->domicilios->localidad_id ?? null,
-                        'domicilio' => $this->domicilios->domicilio ?? null,
                         'codigo_postal' => $this->domicilios->codigo_postal ?? null,
                     ];
                 }),
@@ -44,8 +44,11 @@ class PersonaShowResource extends JsonResource
                     return [
                         'carga_horaria' => $this->datosLaborales->carga_horaria ?? null,
                         'fecha_ingreso' => $this->datosLaborales->fecha_ingreso ?? null,
-                        'email' => $this->datosLaborales->email ?? null,
+                        'email_laboral' => $this->datosLaborales->email_laboral ?? null,
                         'tramo_id' => $this->datosLaborales->tramo_id ?? null,
+                        // Agregar ugl_id
+                        // agregar domicilio_trabajo
+                        // Agregar telefono_laboral
                         'agrupamiento_id' => $this->datosLaborales->agrupamiento_id ?? null,
                         'seccional_id' => $this->datosLaborales->seccional_id ?? null,
                         'agencia_id' => $this->datosLaborales->agencia_id ?? null,
@@ -61,9 +64,9 @@ class PersonaShowResource extends JsonResource
                 'familiares' => $this->when($this->familiares, function () {
                     return $this->familiares->map(function ($familiar) {
                         return [
-                            'nombre' => $familiar->nombre ?? null,
-                            'fecha_nacimiento' => $familiar->fecha_nacimiento ?? null,
-                            'tipo_documento' => $familiar->tipo_documento ?? null,
+                            'nombre_familiar' => $familiar->nombre_familiar ?? null,
+                            'fecha_nacimiento_familiar' => $familiar->fecha_nacimiento_familiar ?? null,
+                            'tipo_documento_familiar' => $familiar->tipo_documento_familiar ?? null,
                             'documento' => $familiar->documento ?? null,
                             'parentesco_id' => $familiar->parentesco_id ?? null,
                         ];

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('tramo_id');
             $table->string('carga_horaria')->nullable();
             $table->date('fecha_ingreso')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email_laboral')->nullable();
             $table->unsignedBigInteger('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users');
             $table->foreign('tramo_id')->references('id')->on('tramo');
