@@ -54,7 +54,7 @@ class UserController extends Controller
             $User = $this->UserService->eliminarUser($id);
 
             return response()->json([
-                "message" => "User eliminado correctamente",
+                "message" => "Estado actualizado",
             ], 200);
         } catch (\Exception $e) {
             throw new CustomizeException('No se pudo eliminar la prioridad', Response::HTTP_INTERNAL_SERVER_ERROR);

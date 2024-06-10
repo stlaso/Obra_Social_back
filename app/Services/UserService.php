@@ -56,7 +56,7 @@ class UserService
         }
         else
         {
-            $User->estados_id=2;
+            $User->estados_id=1;
         }
         $User->save();
         return $User;

@@ -76,7 +76,7 @@ class PersonaController extends Controller
             $persona = $this->personaService->eliminarPersona($id);
 
             return response()->json([
-                "message" => "Persona eliminada correctamente",
+                "message" => "Estado actualizado",
             ], 200);
         } catch (\Exception $e) {
             throw new CustomizeException('No se pudo eliminar la prioridad', Response::HTTP_INTERNAL_SERVER_ERROR);

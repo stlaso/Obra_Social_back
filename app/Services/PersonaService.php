@@ -327,7 +327,7 @@ class PersonaService
         }
         else
         {
-            $persona->estados_id=2;
+            $persona->estados_id=1;
         }
         $persona->save();
         return $persona;
