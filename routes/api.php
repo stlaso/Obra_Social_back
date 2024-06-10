@@ -45,16 +45,43 @@ Route::apiResource('agrupamiento', AgrupamientoController::class);
 Route::apiResource('ugl', UglController::class);
 Route::apiResource('seccional', SeccionalController::class);
 Route::apiResource('estadocivil', EstadoCivilController::class);
-Route::get('/agenciaDatos/{id}', [AgenciaController::class,'agenciaDatos']);
 Route::apiResource('agencia', AgenciaController::class);
+Route::get('/agenciaDatos/{id}', [AgenciaController::class,'agenciaDatos']);
 Route::apiResource('subsidio', SubsidioController::class);
 Route::apiResource('familia', FamiliaController::class);
 Route::apiResource('documentacion', TipoDocumentacionController::class);
 Route::apiResource('tramo', TramoController::class);
 Route::apiResource('sexo', SexoController::class);
-Route::post('/registrar', [AuthController::class, 'register']);
-Route::post('/login', [AuthController::class, 'login']);
 Route::apiResource('/user', UserController::class);
 Route::apiResource('/roles',RolesController::class);
+Route::post('/refresh-token', [AuthController::class, 'refreshToken'])->middleware('auth:sanctum');
+Route::post('/registrar', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
+
+/*
+Route::post('/registrar', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/refresh-token', [AuthController::class, 'refreshToken'])->middleware('auth:sanctum');
+
+// Rutas protegidas por middleware auth:sanctum
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('personas', PersonaController::class);
+    Route::apiResource('localidad', LocalidadController::class);
+    Route::apiResource('provincia', ProvinciaController::class);
+    Route::apiResource('nacionalidad', NacionalidadController::class);
+    Route::apiResource('agrupamiento', AgrupamientoController::class);
+    Route::apiResource('ugl', UglController::class);
+    Route::apiResource('seccional', SeccionalController::class);
+    Route::apiResource('estadocivil', EstadoCivilController::class);
+    Route::apiResource('agencia', AgenciaController::class);
+    Route::apiResource('subsidio', SubsidioController::class);
+    Route::apiResource('familia', FamiliaController::class);
+    Route::apiResource('documentacion', TipoDocumentacionController::class);
+    Route::apiResource('tramo', TramoController::class);
+    Route::apiResource('sexo', SexoController::class);
+    Route::apiResource('/user', UserController::class);
+    Route::apiResource('/roles', RolesController::class);
+});
+*/
 

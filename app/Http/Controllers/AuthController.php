@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
@@ -56,5 +57,34 @@ class AuthController extends Controller
         return response()->json([
             'token' => $user->createToken($request->username)->plainTextToken,
         ]);
+    }
+
+
+    public function refreshToken(Request $request)
+    {
+        $user = $request->user();
+
+        if (! $user) {
+            return response()->json([
+                'error' => 'Usuario no autenticado.',
+            ], Response::HTTP_UNAUTHORIZED);
+        }
+
+        $currentToken = $user->currentAccessToken();
+
+        if (! $currentToken) {
+            return response()->json([
+                'error' => 'Token no válido.',
+            ], Response::HTTP_UNAUTHORIZED);
+        }
+
+        $newToken = $user->createToken('NewToken')->plainTextToken;
+        $rol= $user->roles_id;
+
+        return response()->json([
+            'token' => $newToken,
+            'user' => $rol,
+
+        ], Response::HTTP_OK);
     }
 }
