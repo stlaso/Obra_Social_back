@@ -19,6 +19,6 @@ class Tramo extends Model
 
     public function datosLaborales(): HasMany
     {
-        return $this->hasMany(DatosLaborales::class, 'seccional_id');
+        return $this->hasMany(DatosLaborales::class, 'tramo_id');
     }
 }

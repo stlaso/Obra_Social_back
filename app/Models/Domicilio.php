@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Domicilio extends Model
 {
     use HasFactory;
-    
+
 
     protected $table='Domicilio';
 
@@ -21,7 +21,7 @@ class Domicilio extends Model
     {
         return $this->belongsTo(Localidad::class, 'localidad_id');
     }
-    
+
     public function provincias(): BelongsTo
     {
         return $this->belongsTo(Provincia::class, 'provincia_id');
@@ -31,4 +31,10 @@ class Domicilio extends Model
     {
         return $this->hasMany(Persona::class, 'domilicio_id');
     }
+
+    public function tramo(): BelongsTo
+    {
+        return $this->belongsTo(Tramo::class, 'tramo_id');
+    }
+
 }
