@@ -70,7 +70,7 @@ class PersonaRequest extends FormRequest
 
             'familiares' => 'array',
             'familiares.*.nombre_familiar' => 'nullable|string|max:255',
-            'familiares.*.fecha_nacimiento' => 'nullable|date',
+            'familiares.*.fecha_nacimiento_familiar' => 'nullable|date',
             'familiares.*.tipo_documento_familiar' => 'nullable|string|max:255',
             'familiares.*.documento' => 'nullable|string',
             'familiares.*.parentesco_id' => 'nullable|exists:parentesco,id',
