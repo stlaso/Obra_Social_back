@@ -77,9 +77,9 @@ class PersonaShowResource extends JsonResource
                 'familiares' => $this->when($this->familiares, function () {
                     return $this->familiares->map(function ($familiar) {
                         return [
-                            'nombre_familiar' => $familiar->nombre ?? null,
-                            'fecha_nacimiento_familiar' => $familiar->fecha_nacimiento ?? null,
-                            'tipo_documento_familiar' => $familiar->tipo_documento ?? null,
+                            'nombre_familiar' => $familiar->nombre_familiar ?? null,
+                            'fecha_nacimiento_familiar' => $familiar->fecha_nacimiento_familiar ?? null,
+                            'tipo_documento_familiar' => $familiar->tipo_documento_familiar ?? null,
                             'documento' => $familiar->documento ?? null,
                             'parentesco_id' => $familiar->parentesco_id ?? null,
                             'parentesco' => $familiar->parentesco->nombre ?? null,
