@@ -77,33 +77,39 @@ class PersonaShowResource extends JsonResource
                 'familiares' => $this->when($this->familiares, function () {
                     return $this->familiares->map(function ($familiar) {
                         return [
+                            'created_at' => $familiar->created_at ?? null,
                             'nombre_familiar' => $familiar->nombre_familiar ?? null,
                             'fecha_nacimiento_familiar' => $familiar->fecha_nacimiento_familiar ?? null,
                             'tipo_documento_familiar' => $familiar->tipo_documento_familiar ?? null,
                             'documento' => $familiar->documento ?? null,
                             'parentesco_id' => $familiar->parentesco_id ?? null,
                             'parentesco' => $familiar->parentesco->nombre ?? null,
+                            'updated_at' => $familiar->updated_at ?? null,
                         ];
                     });
                 }),
                 'documentaciones' => $this->when($this->documentaciones, function () {
                     return $this->documentaciones->map(function ($doc) {
                         return [
+                            'created_at' => $doc->created_at ?? null,
                             'tipo_documento_id' => $doc->tipo_documento_id ?? null,
                             'tipo_documento' => $doc->tipoDocumento->nombre ?? null,
                             'archivo' => $doc->archivo ?? null,
+                            'updated_at' => $doc->updated_at ?? null,
                         ];
                     });
                 }),
                 'subsidios' => $this->when($this->subsidios, function () {
                     return $this->subsidios->map(function ($sub) {
                         return [
+                            'created_at' => $sub->created_at ?? null,
                             'tipo_subsidio_id' => $sub->tipo_subsidio_id ?? null,
                             'tipo_subsidio' => $sub->tipoSubsidio->nombre ?? null,
                             'fecha_solicitud' => $sub->fecha_solicitud ?? null,
                             'fecha_otorgamiento' => $sub->fecha_otorgamiento ?? null,
                             'observaciones' => $sub->observaciones ?? null,
                             'user_id' => $sub->user_id ?? null,
+                            'updated_at' => $sub->updated_at ?? null,
                         ];
                     });
                 }),

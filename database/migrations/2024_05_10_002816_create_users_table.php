@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('apellido');
             $table->string('username')->unique();
             $table->string('password');
-            $table->string('telefono');
+            $table->string('telefono')->nullable();
             $table->unsignedBigInteger('seccional_id');
             $table->string('correo')->unique();
             $table->unsignedBigInteger('roles_id');
