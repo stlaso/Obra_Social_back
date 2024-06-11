@@ -9,7 +9,7 @@ class UserService
 {
     public function UserLista()
     {
-        $User=User::all();
+        $User=User::all()->paginate(10);
         return $User;
     }
 
