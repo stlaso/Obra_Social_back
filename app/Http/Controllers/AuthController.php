@@ -56,9 +56,9 @@ class AuthController extends Controller
 
         return response()->json([
             'token' => $user->createToken($request->username)->plainTextToken,
+            'user' => $user
         ]);
     }
-
 
     public function refreshToken(Request $request)
     {
@@ -79,12 +79,10 @@ class AuthController extends Controller
         }
 
         $newToken = $user->createToken('NewToken')->plainTextToken;
-        $rol= $user->roles_id;
 
         return response()->json([
             'token' => $newToken,
-            'user' => $rol,
-
+            'user' => $user
         ], Response::HTTP_OK);
     }
 }
