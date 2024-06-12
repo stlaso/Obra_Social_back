@@ -79,7 +79,7 @@ class PersonaController extends Controller
                 "message" => "Estado actualizado",
             ], 200);
         } catch (\Exception $e) {
-            throw new CustomizeException('No se pudo eliminar la prioridad', Response::HTTP_INTERNAL_SERVER_ERROR);
+            throw new CustomizeException('No se pudo eliminar el estado', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -88,6 +88,21 @@ class PersonaController extends Controller
         {
             $persona=$this->personaService->personaLista();
             return PersonaShowResource::collection($persona);
+        }
+    }
+
+    public function cambiarEstado(Request $request)
+    {
+        try {
+            $personaId = $request->input('persona_id');
+            $estadoId = $request->input('estado_id');
+            $persona = $this->personaService->cambiarEstado($personaId, $estadoId);
+
+            return response()->json([
+                "message" => "Estado actualizado",
+            ], 200);
+        } catch (\Exception $e) {
+            throw new CustomizeException('No se pudo actualizar el estado', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 

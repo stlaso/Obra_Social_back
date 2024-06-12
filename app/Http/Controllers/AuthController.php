@@ -48,10 +48,18 @@ class AuthController extends Controller
 
         $user = User::where('username', $request->username)->first();
 
+        // Verifica si el usuario existe y si la contraseña es correcta
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
                 'username' => ['El usuario es incorrecto.'],
             ]);
+        }
+
+        // Verifica si el estado del usuario está desactivado (ajusta el valor según corresponda)
+        if ($user->estados_id == 2) { // Suponiendo que 2 es el ID para "desactivado"
+            return response()->json([
+                'error' => 'Usuario desactivado.',
+            ], Response::HTTP_FORBIDDEN);
         }
 
         return response()->json([

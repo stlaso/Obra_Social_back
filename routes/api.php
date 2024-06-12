@@ -38,6 +38,7 @@ use App\Http\Controllers\RolesController;
     return $request->user();
 });*/
 Route::get('personalista', [PersonaController::class,'listapersona']);
+Route::post('/cambiar-estado', [PersonaController::class, 'cambiarEstado']);
 Route::apiResource('personas', PersonaController::class);
 Route::apiResource('localidad', LocalidadController::class);
 Route::apiResource('provincia', ProvinciaController::class);

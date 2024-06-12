@@ -57,7 +57,7 @@ class PersonaService
                 $data['persona']['obra_social_id'] = $obraSocial;
             }
 
-            $persona['estados_id']=1;
+            $persona['estados_id']=3;
             $persona = Persona::create($data['persona']);
 
 
@@ -339,4 +339,15 @@ class PersonaService
         return $persona;
     }
 
+
+
+
+    public function cambiarEstado($personaId,$estadoId)
+    {
+
+        $persona=Persona::findOrFail($personaId);
+        $persona->estados_id=$estadoId;
+        $persona->save();
+        return $persona;
+    }
 }
