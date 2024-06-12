@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class PersonaService
 {
-    public function personaLista()
+    public function personaTabla()
     {
         $persona=Persona::orderBy('apellido', 'asc')->paginate(10);
         return $persona;
@@ -333,5 +333,10 @@ class PersonaService
         return $persona;
     }
 
+    public function personaLista()
+    {
+        $persona=Persona::all();
+        return $persona;
+    }
 
 }

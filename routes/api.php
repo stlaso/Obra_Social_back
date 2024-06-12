@@ -37,6 +37,7 @@ use App\Http\Controllers\RolesController;
 /*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });*/
+Route::get('personalista', [PersonaController::class,'listapersona']);
 Route::apiResource('personas', PersonaController::class);
 Route::apiResource('localidad', LocalidadController::class);
 Route::apiResource('provincia', ProvinciaController::class);

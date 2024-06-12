@@ -24,7 +24,7 @@ class PersonaController extends Controller
 
     public function index()
     {
-        $persona=$this->personaService->personaLista();
+        $persona=$this->personaService->personaTabla();
         return PersonaResource::collection($persona);
     }
 
@@ -80,6 +80,14 @@ class PersonaController extends Controller
             ], 200);
         } catch (\Exception $e) {
             throw new CustomizeException('No se pudo eliminar la prioridad', Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    public function ListaPersona()
+    {
+        {
+            $persona=$this->personaService->personaLista();
+            return PersonaShowResource::collection($persona);
         }
     }
 

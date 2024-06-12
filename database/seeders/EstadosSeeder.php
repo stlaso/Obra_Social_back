@@ -16,6 +16,7 @@ class EstadosSeeder extends Seeder
         DB::table('estados')->insert([
             ['nombre' => 'ACTIVO'],
             ['nombre' => 'INACTIVO'],
+            ['nombre' => 'PENDIENTE'],
 
         ]);
     }
