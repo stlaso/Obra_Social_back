@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('persona', function (Blueprint $table) {
             $table->id();
-            $table->integer('legajo')->unique();
+            $table->string('legajo')->unique();
             $table->date('fecha_afiliacion')->nullable();;
             $table->string('nombre');
             $table->string('apellido');

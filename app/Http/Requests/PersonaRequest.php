@@ -26,7 +26,7 @@ class PersonaRequest extends FormRequest
     {
         return [
             //PERSONA
-            'persona.legajo' => 'required|integer|unique:persona',
+            'persona.legajo' => 'required|string|unique:persona',
             'persona.fecha_afiliacion' => 'nullable|date',
             'persona.nombre' => 'required|string',
             'persona.apellido' => 'required|string',
@@ -105,7 +105,6 @@ class PersonaRequest extends FormRequest
         return [
             // PERSONA
             'persona.legajo.required' => 'El legajo es obligatorio.',
-            'persona.legajo.integer' => 'El legajo debe ser un número entero.',
             'persona.legajo.unique' => 'El legajo ya está registrado.',
             'persona.fecha_afiliacion.date' => 'La fecha de afiliación debe ser una fecha válida.',
             'persona.nombre.required' => 'El nombre es obligatorio.',

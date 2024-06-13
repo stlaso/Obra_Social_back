@@ -24,7 +24,7 @@ class PersonaEditRequest extends FormRequest
         return [
             'persona.legajo' => [
                 'required',
-                'integer',
+                'string',
                 Rule::unique('persona')->ignore($id)
             ],
             'persona.fecha_afiliacion' => 'nullable|date',
