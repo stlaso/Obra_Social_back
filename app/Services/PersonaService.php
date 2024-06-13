@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Models\Persona;
 use App\Models\Domicilio;
 use App\Models\DatosLaborales;
-use App\Models\obraSocial;
+use App\Models\ObraSocial;
 use App\Models\Familiares;
 use App\Models\Documentacion;
 use App\Models\Subsidios;
@@ -16,7 +16,7 @@ class PersonaService
 {
     public function personaTabla()
     {
-        $persona=Persona::orderBy('apellido', 'asc')->paginate(10);
+        $persona = Persona::orderBy('apellido', 'asc')->paginate(10);
         return $persona;
     }
 
@@ -28,7 +28,6 @@ class PersonaService
 
     public function verPersona($id)
     {
-
         $persona = Persona::with([
             'domicilios',
             'datosLaborales',
@@ -36,7 +35,7 @@ class PersonaService
             'familiares',
             'documentaciones'
         ])->findOrFail($id);
-        return   $persona;
+        return $persona;
     }
 
     public function personaCrear($data)
@@ -44,50 +43,40 @@ class PersonaService
         DB::beginTransaction();
 
         try {
-            if (isset($data['domicilio']))
-            {
+            if (isset($data['domicilio'])) {
                 $domicilio = $this->crearDomicilio($data['domicilio']);
                 $data['persona']['domicilio_id'] = $domicilio;
             }
 
-            if (isset($data['datos_laborales']))
-            {
+            if (isset($data['datos_laborales'])) {
                 $datosLaborales = $this->crearDatosLaborales($data['datos_laborales']);
                 $data['persona']['datos_laborales_id'] = $datosLaborales;
             }
 
-
-            if (isset($data['obra_social']))
-            {
+            if (isset($data['obra_social'])) {
                 $obraSocial = $this->crearObraSocial($data['obra_social']);
                 $data['persona']['obra_social_id'] = $obraSocial;
             }
 
-            $persona['estados_id']=3;
+            $data['persona']['estados_id'] = 3; // Aquí se establece estados_id a 3 al crear una persona
             $persona = Persona::create($data['persona']);
 
-
-            if (isset($data['familiares']))
-            {
+            if (isset($data['familiares'])) {
                 $this->crearFamiliares($persona->id, $data['familiares']);
             }
 
-            if (isset($data['subsidios']))
-            {
+            if (isset($data['subsidios'])) {
                 $this->crearSubsidios($persona->id, $data['subsidios']);
             }
 
-            if (isset($data['documentacion']))
-            {
+            if (isset($data['documentacion'])) {
                 $this->crearDocumentacion($persona->id, $data['documentacion']);
             }
-
 
             DB::commit();
 
             return $persona;
-        } catch (\Exception $e)
-        {
+        } catch (\Exception $e) {
             DB::rollback();
             Log::error('Error al crear persona: ' . $e->getMessage());
             throw $e;
@@ -96,54 +85,44 @@ class PersonaService
 
     public function crearDomicilio($data)
     {
-        $domicilio=Domicilio::create($data);
+        $domicilio = Domicilio::create($data);
         return $domicilio->id;
-
     }
 
     public function crearDatosLaborales($data)
     {
-        $DatosLaborales=DatosLaborales::create($data);
-        return $DatosLaborales->id;
+        $datosLaborales = DatosLaborales::create($data);
+        return $datosLaborales->id;
     }
 
     public function crearObraSocial($data)
     {
-        $obraSocial=ObraSocial::create($data);
+        $obraSocial = ObraSocial::create($data);
         return $obraSocial->id;
     }
 
-    public function crearFamiliares($id,$data)
+    public function crearFamiliares($id, $data)
     {
-
-        foreach($data as $familia)
-        {
-            $familia['persona_id']=$id;
-            $familiares=Familiares::create($familia);
+        foreach ($data as $familia) {
+            $familia['persona_id'] = $id;
+            Familiares::create($familia);
         }
-
     }
 
-    public function crearSubsidios($id,$data)
+    public function crearSubsidios($id, $data)
     {
-
-        foreach($data as $subsidio)
-        {
-            $subsidio['persona_id']=$id;
-            $subsidios=Subsidios::create($subsidio);
+        foreach ($data as $subsidio) {
+            $subsidio['persona_id'] = $id;
+            Subsidios::create($subsidio);
         }
-
     }
 
-    public function crearDocumentacion($id,$data)
+    public function crearDocumentacion($id, $data)
     {
-
-        foreach($data as $documentacion)
-        {
-            $documentacion['persona_id']=$id;
-            $documentacion=documentacion::create($documentacion);
+        foreach ($data as $documentacion) {
+            $documentacion['persona_id'] = $id;
+            Documentacion::create($documentacion);
         }
-
     }
 
     public function personaActualizar($personaId, $data)
@@ -152,6 +131,7 @@ class PersonaService
 
         try {
             $persona = Persona::findOrFail($personaId);
+
             // Manejo de domicilio
             if (isset($data['domicilio'])) {
                 if ($persona->domicilio) {
@@ -177,7 +157,6 @@ class PersonaService
                 }
             } else {
                 if ($persona->datosLaborales) {
-                    // Desasociar la relación antes de eliminar
                     $persona->datos_laborales_id = null;
                     $persona->save();
                     $persona->datosLaborales->delete();
@@ -233,8 +212,6 @@ class PersonaService
             throw $e;
         }
     }
-
-
 
     private function actualizarFamiliares($personaId, $data)
     {
@@ -323,36 +300,31 @@ class PersonaService
         Documentacion::where('persona_id', $personaId)->delete();
     }
 
-
     public function eliminarPersona($id)
     {
-        $persona=Persona::findOrFail($id);
-        if($persona->estados_id==1)
-        {
-            $persona->estados_id=2;
+        $persona = Persona::findOrFail($id);
+
+        // Alternar entre estados 1 y 2
+        if ($persona->estados_id == 1) {
+            $persona->estados_id = 2;
+        } else {
+            $persona->estados_id = 1;
         }
-        else
-        {
-            $persona->estados_id=1;
-        }
+        
         $persona->save();
         return $persona;
     }
 
     public function personaLista()
     {
-        $persona=Persona::all();
+        $persona = Persona::all();
         return $persona;
     }
 
-
-
-
-    public function cambiarEstado($personaId,$estadoId)
+    public function cambiarEstado($personaId, $estadoId)
     {
-
-        $persona=Persona::findOrFail($personaId);
-        $persona->estados_id=$estadoId;
+        $persona = Persona::findOrFail($personaId);
+        $persona->estados_id = $estadoId;
         $persona->save();
         return $persona;
     }
