@@ -20,6 +20,12 @@ class PersonaService
         return $persona;
     }
 
+    public function personaAll()
+    {
+        $persona=Persona::orderBy('apellido', 'asc')->get();
+        return $persona;
+    }
+
     public function verPersona($id)
     {
 
@@ -349,5 +355,13 @@ class PersonaService
         $persona->estados_id=$estadoId;
         $persona->save();
         return $persona;
+    }
+
+    public function buscarPersona($query)
+    {
+        $personas = Persona::where('dni', 'LIKE', "%$query%")
+            ->orWhere('legajo', 'LIKE', "%$query%")->get();
+
+        return $personas;
     }
 }

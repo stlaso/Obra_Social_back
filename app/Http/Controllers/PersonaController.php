@@ -106,5 +106,24 @@ class PersonaController extends Controller
         }
     }
 
+    public function buscarPersona($query)
+    {
+        try {
+            $personas = $this->personaService->buscarPersona($query);
+
+            return PersonaResource::collection($personas);
+        } catch (\Exception $e) {
+            throw new CustomizeException('Persona no encontrada', Response::HTTP_NOT_FOUND);
+        }
+    }
+
+    public function personaAll()
+    {
+        $persona=$this->personaService->personaAll();
+        return PersonaResource::collection($persona);
+    }
+
+
+
 }
 
