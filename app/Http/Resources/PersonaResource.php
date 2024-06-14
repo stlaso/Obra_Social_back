@@ -18,6 +18,7 @@ class PersonaResource extends JsonResource
             'email'=>$this->resource->email,
             'ugl'=>$this->resource->datosLaborales->agencias->ugl->nombre ?? null,
             'seccional'=>$this->resource->datosLaborales->seccionales->nombre ?? null,
+            'seccional_id'=>$this->resource->datosLaborales->seccionales->id ?? null,
             'estado'=>$this->resource->estados->nombre,
         ];
     }
