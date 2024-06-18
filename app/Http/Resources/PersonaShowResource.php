@@ -16,6 +16,7 @@ class PersonaShowResource extends JsonResource
     {
             return [
                 'persona' => [
+                    'id' => $this->id,
                     'legajo' => $this->legajo,
                     'fecha_afiliacion' => $this->fecha_afiliacion ?? null,
                     'nombre' => $this->nombre,
@@ -34,10 +35,11 @@ class PersonaShowResource extends JsonResource
                     'nacionalidad' => $this->nacionalidades->nombre ?? null,
                     'estados_id' => $this->estados_id ?? null,
                     'estados' => $this->estados->nombre ?? null,
-                    'user_id'=>$this->user_id ?? null,
+                    'users_id'=>$this->users_id ?? null,
                 ],
                 'domicilios' => $this->when($this->domicilios, function () {
                     return [
+                        'id' => $this->id,
                         'domicilio' => $this->domicilios->domicilio ?? null,
                         'provincia_id' => $this->domicilios->provincia_id ?? null,
                         'provincia' => $this->domicilios->provincias->nombre ?? null,
@@ -48,6 +50,7 @@ class PersonaShowResource extends JsonResource
                 }),
                 'datos_laborales' => $this->when($this->datosLaborales, function () {
                     return [
+                        'id' => $this->id,
                         'carga_horaria' => $this->datosLaborales->carga_horaria ?? null,
                         'fecha_ingreso' => $this->datosLaborales->fecha_ingreso ?? null,
                         'email_laboral' => $this->datosLaborales->email_laboral ?? null,
@@ -70,6 +73,7 @@ class PersonaShowResource extends JsonResource
                 }),
                 'obraSociales' => $this->when($this->obraSociales, function () {
                     return [
+                        'id' => $this->id,
                         'tipo_obra' => $this->obraSociales->tipo_obra ?? null,
                         'obra_social' => $this->obraSociales->obra_social ?? null,
                     ];
@@ -77,6 +81,7 @@ class PersonaShowResource extends JsonResource
                 'familiares' => $this->when($this->familiares, function () {
                     return $this->familiares->map(function ($familiar) {
                         return [
+                            'id' => $this->id,
                             'created_at' => $familiar->created_at ?? null,
                             'nombre_familiar' => $familiar->nombre_familiar ?? null,
                             'fecha_nacimiento_familiar' => $familiar->fecha_nacimiento_familiar ?? null,
@@ -85,31 +90,35 @@ class PersonaShowResource extends JsonResource
                             'parentesco_id' => $familiar->parentesco_id ?? null,
                             'parentesco' => $familiar->parentesco->nombre ?? null,
                             'updated_at' => $familiar->updated_at ?? null,
+                            'users_id' => $familiar->users_id ?? null
                         ];
                     });
                 }),
                 'documentaciones' => $this->when($this->documentaciones, function () {
                     return $this->documentaciones->map(function ($doc) {
                         return [
+                            'id' => $this->id,
                             'created_at' => $doc->created_at ?? null,
                             'tipo_documento_id' => $doc->tipo_documento_id ?? null,
                             'tipo_documento' => $doc->tipoDocumento->nombre ?? null,
                             'archivo' => $doc->archivo ?? null,
                             'updated_at' => $doc->updated_at ?? null,
+                            'users_id' => $doc->users_id ?? null
                         ];
                     });
                 }),
                 'subsidios' => $this->when($this->subsidios, function () {
                     return $this->subsidios->map(function ($sub) {
                         return [
+                            'id' => $this->id,
                             'created_at' => $sub->created_at ?? null,
                             'tipo_subsidio_id' => $sub->tipo_subsidio_id ?? null,
                             'tipo_subsidio' => $sub->tipoSubsidio->nombre ?? null,
                             'fecha_solicitud' => $sub->fecha_solicitud ?? null,
                             'fecha_otorgamiento' => $sub->fecha_otorgamiento ?? null,
                             'observaciones' => $sub->observaciones ?? null,
-                            'user_id' => $sub->user_id ?? null,
                             'updated_at' => $sub->updated_at ?? null,
+                            'users_id' => $sub->users_id ?? null,
                         ];
                     });
                 }),
