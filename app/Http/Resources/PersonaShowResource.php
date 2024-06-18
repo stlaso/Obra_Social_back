@@ -92,7 +92,7 @@ class PersonaShowResource extends JsonResource
                             'parentesco' => $familiar->parentesco->nombre ?? null,
                             'updated_at' => $familiar->updated_at ?? null,
                             'users_id' => $familiar->users_id ?? null,
-                            'users_nombre' => $familiar->users->nombre ?? null
+                            'users_nombre' => $familiar->users->username ?? null
                         ];
                     });
                 }),
@@ -106,7 +106,7 @@ class PersonaShowResource extends JsonResource
                             'archivo' => $doc->archivo ?? null,
                             'updated_at' => $doc->updated_at ?? null,
                             'users_id' => $doc->users_id ?? null,
-                            'users_nombre' => $doc->users->nombre ?? null
+                            'users_nombre' => $doc->users->username ?? null
                         ];
                     });
                 }),
@@ -122,7 +122,7 @@ class PersonaShowResource extends JsonResource
                             'observaciones' => $sub->observaciones ?? null,
                             'updated_at' => $sub->updated_at ?? null,
                             'users_id' => $sub->users_id ?? null,
-                            'users_nombre' => $sub->users->nombre ?? null,
+                            'users_nombre' => $sub->users->username ?? null,
                         ];
                     });
                 }),
