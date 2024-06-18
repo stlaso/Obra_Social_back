@@ -39,14 +39,14 @@ class PersonaRequest extends FormRequest
             'persona.email' => 'nullable|email',
             'persona.telefono' => 'nullable|string',
             'persona.nacionalidad_id' => 'nullable|exists:nacionalidad,id',
-            'persona.user_id'=>'required|integer',
+            'persona.users_id'=>'required|integer',
 
             //DOMICILIO
             'domicilio.provincia_id'=>'nullable|integer',
             'domicilio.localidad_id'=>'nullable|integer',
             'domicilio.domicilio' => 'nullable|string',
             'domicilio.codigo_postal' => 'nullable|integer',
-            'domicilio.user_id'=>'nullable|integer',
+            'domicilio.users_id'=>'nullable|integer',
 
             //DATOS LABORALES
 
@@ -58,13 +58,13 @@ class PersonaRequest extends FormRequest
             'datos_laborales.seccional_id' => 'nullable|exists:seccional,id',
             'datos_laborales.agencia_id'=>'nullable|integer',
             'datos_laborales.tipo_contrato_id' => 'nullable|integer',
-            'datos_laborales.user_id'=>'nullable|integer',
+            'datos_laborales.users_id'=>'nullable|integer',
 
 
             //OBRA SOCIAL
             'obra_social.tipo_obra' => 'nullable|string',
             'obra_social.obra_social' => 'nullable|string',
-            'obra_social.user_id'=>'nullable|integer',
+            'obra_social.users_id'=>'nullable|integer',
 
             //Familiares
 
@@ -74,7 +74,7 @@ class PersonaRequest extends FormRequest
             'familiares.*.tipo_documento_familiar' => 'nullable|string|max:255',
             'familiares.*.documento' => 'nullable|string',
             'familiares.*.parentesco_id' => 'nullable|exists:parentesco,id',
-            'familiares.*.user_id'=>'nullable|integer',
+            'familiares.*.users_id'=>'nullable|integer',
 
             //SUBSIDIOS
             'subsidios' => 'array',
@@ -82,13 +82,13 @@ class PersonaRequest extends FormRequest
             'subsidios.*.fecha_solicitud' => 'nullable|date',
             'subsidios.*.fecha_otorgamiento' => 'nullable|date|after_or_equal:subsidios.*.fecha_solicitud',
             'subsidios.*.observaciones' => 'nullable|string|max:255',
-            'subsidios.*.user_id'=>'nullable|integer',
+            'subsidios.*.users_id'=>'nullable|integer',
 
             //DOCUMENTACION
             'documentacion' => 'array',
             'documentacion.*.tipo_documento_id' => 'nullable|exists:tipo_documento,id',
             'documentacion.*.archivo' => 'nullable|string|max:2048',
-            'documentacion.*.user_id'=>'nullable|integer'
+            'documentacion.*.users_id'=>'nullable|integer'
 
 
 
