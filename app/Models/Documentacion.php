@@ -27,4 +27,9 @@ class Documentacion extends Model
         return $this->BelongsTo(TipoDocumento::class, 'tipo_documento_id');
     }
 
+    public function users(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
+
 }

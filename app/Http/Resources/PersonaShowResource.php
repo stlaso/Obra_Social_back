@@ -36,6 +36,7 @@ class PersonaShowResource extends JsonResource
                     'estados_id' => $this->estados_id ?? null,
                     'estados' => $this->estados->nombre ?? null,
                     'users_id'=>$this->users_id ?? null,
+                    'user_nombre'=>$this->users->nombre ?? null,
                 ],
                 'domicilios' => $this->when($this->domicilios, function () {
                     return [
@@ -90,7 +91,8 @@ class PersonaShowResource extends JsonResource
                             'parentesco_id' => $familiar->parentesco_id ?? null,
                             'parentesco' => $familiar->parentesco->nombre ?? null,
                             'updated_at' => $familiar->updated_at ?? null,
-                            'users_id' => $familiar->users_id ?? null
+                            'users_id' => $familiar->users_id ?? null,
+                            'users_nombre' => $familiar->users->nombre ?? null
                         ];
                     });
                 }),
@@ -103,7 +105,8 @@ class PersonaShowResource extends JsonResource
                             'tipo_documento' => $doc->tipoDocumento->nombre ?? null,
                             'archivo' => $doc->archivo ?? null,
                             'updated_at' => $doc->updated_at ?? null,
-                            'users_id' => $doc->users_id ?? null
+                            'users_id' => $doc->users_id ?? null,
+                            'users_nombre' => $doc->users->nombre ?? null
                         ];
                     });
                 }),
@@ -119,6 +122,7 @@ class PersonaShowResource extends JsonResource
                             'observaciones' => $sub->observaciones ?? null,
                             'updated_at' => $sub->updated_at ?? null,
                             'users_id' => $sub->users_id ?? null,
+                            'users_nombre' => $sub->users->nombre ?? null,
                         ];
                     });
                 }),

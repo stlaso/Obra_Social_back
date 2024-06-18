@@ -63,4 +63,25 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Seccional::class, 'seccional_id');
     }
+
+    public function persona(): HasMany
+    {
+        return $this->HasMany(Persona::class, 'users_id');
+    }
+
+    public function documentacion(): HasMany
+    {
+        return $this->HasMany(Documentacion::class, 'users_id');
+    }
+
+    public function subsidios(): HasMany
+    {
+        return $this->HasMany(Subsidios::class, 'users_id');
+    }
+
+    public function familiares(): HasMany
+    {
+        return $this->HasMany(Familiares::class, 'users_id');
+    }
+
 }

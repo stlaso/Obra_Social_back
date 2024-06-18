@@ -12,7 +12,7 @@ class Subsidios extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    
+
     protected $table='subsidios';
 
     protected $guarded = [];
@@ -26,5 +26,9 @@ class Subsidios extends Model
     {
         return $this->BelongsTo(TipoSubsidio::class, 'tipo_subsidio_id');
     }
-    
+
+    public function users(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
 }

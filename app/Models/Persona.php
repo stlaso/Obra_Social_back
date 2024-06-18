@@ -18,7 +18,7 @@ class Persona extends Model
 
     protected $guarded = [];
 
-    
+
     public function domicilios(): BelongsTo
     {
         return $this->belongsTo(Domicilio::class, 'domicilio_id');
@@ -44,7 +44,7 @@ class Persona extends Model
         return $this->belongsTo(Estado::class, 'estados_id');
     }
 
-    
+
     public function estadoCivil(): BelongsTo
     {
         return $this->belongsTo(EstadoCivil::class, 'estado_civil_id');
@@ -59,7 +59,7 @@ class Persona extends Model
     {
         return $this->HasMany(Documentacion::class, 'persona_id');
     }
-    
+
     public function familiares(): HasMany
     {
         return $this->HasMany(Familiares::class, 'persona_id');
@@ -69,6 +69,11 @@ class Persona extends Model
     {
         return $this->HasMany(Subsidios::class, 'persona_id');
     }
-    
-    
+
+    public function users(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'users_id');
+    }
+
+
 }

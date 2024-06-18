@@ -12,7 +12,7 @@ class Familiares extends Model
     use HasFactory;
     use SoftDeletes;
 
-    
+
     protected $table='familiares';
 
     protected $guarded = [];
@@ -24,6 +24,11 @@ class Familiares extends Model
     public function parentesco(): BelongsTo
     {
         return $this->BelongsTo(Parentesco::class, 'parentesco_id');
+    }
+
+    public function users(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'users_id');
     }
 
 }
