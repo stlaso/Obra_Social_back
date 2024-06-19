@@ -79,10 +79,10 @@ class PersonaShowResource extends JsonResource
                         'obra_social' => $this->obraSociales->obra_social ?? null,
                     ];
                 }),
-                'familiares' => $this->when($this->familiares, function () {
+                'familiares' => $this->when('familiares', function () {
                     return $this->familiares->map(function ($familiar) {
                         return [
-                            'id' => $this->id,
+                            'id' => $familiar->id,
                             'created_at' => $familiar->created_at ?? null,
                             'nombre_familiar' => $familiar->nombre_familiar ?? null,
                             'fecha_nacimiento_familiar' => $familiar->fecha_nacimiento_familiar ?? null,
@@ -96,10 +96,10 @@ class PersonaShowResource extends JsonResource
                         ];
                     });
                 }),
-                'documentaciones' => $this->when($this->documentaciones, function () {
+                'documentaciones' => $this->when('documentaciones', function () {
                     return $this->documentaciones->map(function ($doc) {
                         return [
-                            'id' => $this->id,
+                            'id' => $doc->id,
                             'created_at' => $doc->created_at ?? null,
                             'tipo_documento_id' => $doc->tipo_documento_id ?? null,
                             'tipo_documento' => $doc->tipoDocumento->nombre ?? null,
@@ -110,10 +110,10 @@ class PersonaShowResource extends JsonResource
                         ];
                     });
                 }),
-                'subsidios' => $this->when($this->subsidios, function () {
+                'subsidios' => $this->when('subsidios', function () {
                     return $this->subsidios->map(function ($sub) {
                         return [
-                            'id' => $this->id,
+                            'id' => $sub->id,
                             'created_at' => $sub->created_at ?? null,
                             'tipo_subsidio_id' => $sub->tipo_subsidio_id ?? null,
                             'tipo_subsidio' => $sub->tipoSubsidio->nombre ?? null,
