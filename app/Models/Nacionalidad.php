@@ -13,7 +13,7 @@ class Nacionalidad extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table='Nacionalidad';
+    protected $table='nacionalidad';
 
     protected $guarded = [];
 

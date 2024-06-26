@@ -13,7 +13,7 @@ class ObraSocial extends Model
 
     use SoftDeletes;
     
-    protected $table='Obra_Social';
+    protected $table='obra_social';
 
     protected $guarded = [];
 

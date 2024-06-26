@@ -14,7 +14,7 @@ class Agencia extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table='Agencia';
+    protected $table='agencia';
 
     protected $guarded = [];
 

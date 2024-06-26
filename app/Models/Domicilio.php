@@ -13,7 +13,7 @@ class Domicilio extends Model
     use HasFactory;
 
 
-    protected $table='Domicilio';
+    protected $table='domicilio';
 
     protected $guarded = [];
 
