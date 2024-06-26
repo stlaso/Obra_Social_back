@@ -12,7 +12,7 @@ class Seccional extends Model
     use HasFactory;
     use SoftDeletes;
 
-    protected $table='Seccional';
+    protected $table='seccional';
 
     protected $guarded = [];
 
