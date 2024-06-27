@@ -30,9 +30,9 @@ class PersonaRequest extends FormRequest
             'persona.fecha_afiliacion' => 'nullable|date',
             'persona.nombre' => 'required|string',
             'persona.apellido' => 'required|string',
-            'persona.sexo_id' => 'nullable|exists:sexo,id',  // Referencia a la tabla sexo
+            'persona.sexo_id' => 'nullable|exists:sexo,id',
             'persona.fecha_nacimiento' => 'nullable|date',
-            'persona.estado_civil_id' => 'nullable|exists:estado_civil,id', // Referencia
+            'persona.estado_civil_id' => 'nullable|exists:estado_civil,id',
             'persona.tipo_documento' => 'nullable|string',
             'persona.dni' => 'required|string|unique:persona',
             'persona.cuil' => 'nullable|string|unique:persona',
@@ -59,7 +59,6 @@ class PersonaRequest extends FormRequest
             'datos_laborales.agencia_id'=>'nullable|integer',
             'datos_laborales.tipo_contrato_id' => 'nullable|integer',
             'datos_laborales.users_id'=>'nullable|integer',
-
 
             //OBRA SOCIAL
             'obra_social.tipo_obra' => 'nullable|string',
@@ -89,8 +88,6 @@ class PersonaRequest extends FormRequest
             'documentacion.*.tipo_documento_id' => 'nullable|exists:tipo_documento,id',
             'documentacion.*.archivo' => 'nullable|string|max:2048',
             'documentacion.*.users_id'=>'nullable|integer'
-
-
 
         ];
     }
