@@ -36,6 +36,7 @@ class AuthController extends Controller
             'seccional_id' => $request->seccional_id,
         ]);
 
+
         return response()->json($user, 201);
     }
 
@@ -64,7 +65,19 @@ class AuthController extends Controller
 
         return response()->json([
             'token' => $user->createToken($request->username)->plainTextToken,
-            'user' => $user
+            'user' => [
+                "id" => $user->id,
+                "nombre" => $user->nombre,
+                "apellido" => $user->apellido,
+                "correo" => $user->correo,
+                "seccional" => $user->seccional->nombre,
+                "seccional_id" => (int) $user->seccional_id,
+                "rol" => $user->rol->nombre,
+                "roles_id" => (int) $user->roles_id,
+                "estado" => $user->estado->nombre,
+                "telefono" => $user->telefono,
+                "username" => $user->username
+            ]
         ]);
     }
 
@@ -90,7 +103,19 @@ class AuthController extends Controller
 
         return response()->json([
             'token' => $newToken,
-            'user' => $user
+            'user' => [
+                "id" => $user->id,
+                "nombre" => $user->nombre,
+                "apellido" => $user->apellido,
+                "correo" => $user->correo,
+                "seccional" => $user->seccional->nombre,
+                "seccional_id" => (int) $user->seccional_id,
+                "rol" => $user->rol->nombre,
+                "roles_id" => (int) $user->roles_id,
+                "estado" => $user->estado->nombre,
+                "telefono" => $user->telefono,
+                "username" => $user->username
+            ]
         ], Response::HTTP_OK);
     }
 }
