@@ -4,6 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Storage;
 
 class PersonaShowResource extends JsonResource
 {
@@ -103,7 +104,7 @@ class PersonaShowResource extends JsonResource
                             'created_at' => $doc->created_at ?? null,
                             'tipo_documento_id' => $doc->tipo_documento_id ?? null,
                             'tipo_documento' => $doc->tipoDocumento->nombre ?? null,
-                            'archivo' => $doc->archivo ?? null,
+                            'archivo' => $doc->archivo ? Storage::url($doc->archivo) : null,
                             'updated_at' => $doc->updated_at ?? null,
                             'users_id' => $doc->users_id ?? null,
                             'users_nombre' => $doc->users->username ?? null
