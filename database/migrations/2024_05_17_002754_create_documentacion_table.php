@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('archivo')->nullable();
             $table->unsignedBigInteger('users_id')->nullable();
             $table->foreign('users_id')->references('id')->on('users');
-            $table->unsignedBigInteger('persona_id');
+            $table->unsignedBigInteger('persona_id')->nullable();
             $table->foreign('tipo_documento_id')->references('id')->on('tipo_documento');
             $table->foreign('persona_id')->references('id')->on('persona');
             $table->timestamps();

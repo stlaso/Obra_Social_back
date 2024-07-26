@@ -70,7 +70,7 @@ class PersonaService
             }
 
             if (isset($data['documentacion'])) {
-                $this->crearDocumentacion($persona->id, $data['documentacion']);
+                $this->asignarDocumentos($persona->id, $data['documentacion']);
             }
 
             DB::commit();
@@ -117,17 +117,13 @@ class PersonaService
         }
     }
 
-    public function crearDocumentacion($id, $data)
+    public function asignarDocumentos($id, $data)
     {
         foreach ($data as $documentacion) {
-            $documentacion['persona_id'] = $id;
-            // Verifica si se ha subido un archivo
-            if (isset($documentacion['archivo']) && $documentacion['archivo']->isValid()) {
-            // Sube el archivo y guarda la ruta
-            $path = $documentacion['archivo']->store('documentacion', 'public');
-            $documentacion['archivo'] = $path;
-        }
-            Documentacion::create($documentacion);
+            $docu=Documentacion::where('id',$documentacion['id']);
+            $docu['persona_id']=$id;
+            $docu->update();
+
         }
     }
 
@@ -316,7 +312,7 @@ class PersonaService
         } else {
             $persona->estados_id = 1;
         }
-        
+
         $persona->save();
         return $persona;
     }

@@ -25,8 +25,8 @@ class DocumentacionRequest extends FormRequest
     {
         return [
             'tipo_documento' => 'string|max:255',
-            'archivo' => 'file|max:10240', 
-            'persona_id' => 'required|exists:persona,id',
+            'archivo' => 'file|max:10240',
+            'persona_id' => 'nullable|exists:persona,id',
         ];
     }
 

@@ -18,6 +18,7 @@ use App\Http\Controllers\SexoController;
 use App\Http\Controllers\TramoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\FileController;
 use App\Http\Controllers\RolesController;
 
 
@@ -61,6 +62,7 @@ Route::apiResource('/roles',RolesController::class);
 Route::post('/refresh-token', [AuthController::class, 'refreshToken'])->middleware('auth:sanctum');
 Route::post('/registrar', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+Route::apiResource('file', FileController::class);
 
 
 /*

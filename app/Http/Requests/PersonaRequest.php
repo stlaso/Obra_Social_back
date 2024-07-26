@@ -85,9 +85,7 @@ class PersonaRequest extends FormRequest
 
             //DOCUMENTACION
             'documentacion' => 'array',
-            'documentacion.*.tipo_documento_id' => 'nullable|exists:tipo_documento,id',
-            'documentacion.*.archivo' => 'nullable|file',
-            'documentacion.*.users_id'=>'nullable|integer'
+            'documentacion.*.id'=>'nullable|integer'
 
         ];
     }
