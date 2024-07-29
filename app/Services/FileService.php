@@ -9,12 +9,14 @@ class FileService
     public function FileCrear($request)
     {
 
-        $ids = []; // Array para almacenar los IDs de los documentos creados
-        $documentos = $request->input('documentacion');
+        $ids = [];
 
-        foreach ($documentos as $doc) {
+        $data=$request['documentacion'];
+
+        foreach ($data as $doc) {
             // Crear un nuevo documento
-            $documento = new Documento();
+            $documento = new Documentacion();
+
             $documento->tipo_documento_id = $doc['tipo_documento_id'];
 
             // Verificar si el archivo es válido y guardarlo
@@ -31,6 +33,6 @@ class FileService
         }
 
         // Retornar los IDs de los documentos creados
-        return response()->json(['ids' => $ids, 'message' => 'Documentos guardados exitosamente'], 201);
+        return $ids;
     }
 }

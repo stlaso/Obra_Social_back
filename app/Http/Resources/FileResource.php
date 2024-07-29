@@ -14,6 +14,7 @@ class FileResource extends JsonResource
      */
     public function toArray($request): array
     {
+        dd($request);
         return $this->collection->map(function ($documento) {
             return [
                 'id' => $documento->id,

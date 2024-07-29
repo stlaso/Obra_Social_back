@@ -20,6 +20,7 @@ class FileController extends Controller
     {
         $validated = $request->validated();
         $File=$this->FileService->FileCrear($validated);
+        //dd($File);
         return FileResource::collection($File);
     }
 }
