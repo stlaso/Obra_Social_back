@@ -35,4 +35,10 @@ class FileService
         // Retornar los IDs de los documentos creados
         return $ids;
     }
+
+
+    public function eliminarFile($id)
+    {
+        $file=Documentacion::findOrFail($id);
+    }
 }

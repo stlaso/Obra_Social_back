@@ -119,8 +119,10 @@ class PersonaService
 
     public function asignarDocumentos($id, $data)
     {
+
         foreach ($data as $documentacion) {
-            $docu=Documentacion::where('id',$documentacion['id']);
+
+            $docu=Documentacion::where('id',$documentacion['id'])->first();
             $docu['persona_id']=$id;
             $docu->update();
 
