@@ -39,6 +39,22 @@ class FileService
 
     public function eliminarFile($id)
     {
-        $file=Documentacion::findOrFail($id);
+        // Encontrar el registro en la base de datos
+        $file = Documentacion::findOrFail($id);
+
+        // Ruta del archivo en el sistema de archivos
+        // Aquí debes ajustar la ruta según cómo almacenes los archivos en tu aplicación
+        $filePath = storage_path('app/public/' . $file->ruta_archivo);
+
+        // Verificar si el archivo físico existe y eliminarlo
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+
+        // Eliminar el registro de la base de datos
+        $file->delete();
+
+        // Opcional: retornar una respuesta
+        return response()->json(['message' => 'Archivo eliminado correctamente.']);
     }
 }
