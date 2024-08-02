@@ -42,10 +42,7 @@ class FileService
         // Encontrar el registro en la base de datos
         $file = Documentacion::findOrFail($id);
 
-        // Ruta del archivo en el sistema de archivos
-        // Aquí debes ajustar la ruta según cómo almacenes los archivos en tu aplicación
-        $filePath = storage_path('app/public/' . $file->ruta_archivo);
-
+        $filePath = storage_path('app/public/' . $file->archivo);
         // Verificar si el archivo físico existe y eliminarlo
         if (file_exists($filePath)) {
             unlink($filePath);
@@ -57,4 +54,25 @@ class FileService
         // Opcional: retornar una respuesta
         return response()->json(['message' => 'Archivo eliminado correctamente.']);
     }
+
+    public function FileMostrar($id)
+{
+    // Buscar el documento en la base de datos usando el ID
+    $documento = Documentacion::find($id);
+
+    if (!$documento) {
+        // Si el documento no se encuentra, retorna un error 404
+        abort(404, 'Documento no encontrado');
+    }
+
+    // Verificar que el archivo existe
+    $path = storage_path('app/public/' . $documento->archivo);
+    if (!file_exists($path)) {
+        // Si el archivo no existe, retorna un error 404
+        abort(404, 'Archivo no encontrado');
+    }
+
+    // Retornar el archivo para su visualización
+    return response()->file($path);
+}
 }

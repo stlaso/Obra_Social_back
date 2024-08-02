@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Services\FileService;
 use App\Http\Requests\FileRequest;
+use App\Exceptions\CustomizeException;
+use Illuminate\Http\Response;
 
 class FileController extends Controller
 {
@@ -31,7 +33,18 @@ class FileController extends Controller
                 "message" => "Estado actualizado",
             ], 200);
         } catch (\Exception $e) {
-            throw new CustomizeException('No se pudo eliminar la prioridad', Response::HTTP_INTERNAL_SERVER_ERROR);
+            throw new CustomizeException('No se pudo eliminar el archivo', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
+    }
+
+    public function show(string $id)
+    {
+        try {
+        $File=$this->FileService->FileMostrar($id);
+        return $File;
+        }
+     catch (\Exception $e) {
+        throw new CustomizeException('No se pudo encontrar el archivo', Response::HTTP_INTERNAL_SERVER_ERROR);
+    }
     }
 }
