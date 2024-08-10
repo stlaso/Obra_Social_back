@@ -40,7 +40,7 @@ use App\Http\Controllers\RolesController;
 });*/
 Route::get('personalista', [PersonaController::class,'listapersona']);
 Route::get('personaAll', [PersonaController::class,'personaAll']);
-Route::get('buscar-persona/{persona}', [PersonaController::class,'buscarPersona']);
+Route::get('buscar-persona', [PersonaController::class,'buscarPersona']);
 Route::post('/cambiar-estado', [PersonaController::class, 'cambiarEstado']);
 Route::apiResource('personas', PersonaController::class);
 Route::apiResource('localidad', LocalidadController::class);

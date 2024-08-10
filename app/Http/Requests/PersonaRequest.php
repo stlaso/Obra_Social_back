@@ -36,7 +36,7 @@ class PersonaRequest extends FormRequest
             'persona.tipo_documento' => 'nullable|string',
             'persona.dni' => 'required|string|unique:persona',
             'persona.cuil' => 'nullable|string|unique:persona',
-            'persona.email' => 'nullable|email',
+            'persona.email' => 'nullable|string',
             'persona.telefono' => 'nullable|string',
             'persona.nacionalidad_id' => 'nullable|exists:nacionalidad,id',
             'persona.users_id'=>'required|integer',
@@ -52,7 +52,7 @@ class PersonaRequest extends FormRequest
 
             'datos_laborales.carga_horaria' => 'nullable|string',
             'datos_laborales.fecha_ingreso' => 'nullable|date',
-            'datos_laborales.email_laboral' => 'nullable|email',
+            'datos_laborales.email_laboral' => 'nullable|string',
             'datos_laborales.tramo_id' => 'nullable|integer',
             'datos_laborales.agrupamiento_id' => 'nullable|integer',
             'datos_laborales.seccional_id' => 'nullable|exists:seccional,id',

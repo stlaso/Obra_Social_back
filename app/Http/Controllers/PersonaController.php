@@ -24,7 +24,7 @@ class PersonaController extends Controller
 
     public function index()
     {
-        $persona=$this->personaService->personaTabla();
+        $persona = $this->personaService->personaTabla();
         return PersonaResource::collection($persona);
     }
 
@@ -57,7 +57,6 @@ class PersonaController extends Controller
             return response()->json([
                 "message" => "Persona actualizada exitosamente",
             ], 200);
-
         } catch (\Exception $e) {
             throw new CustomizeException($e->getMessage(), \Illuminate\Http\Response::HTTP_INTERNAL_SERVER_ERROR, $e);
         }
@@ -66,7 +65,7 @@ class PersonaController extends Controller
 
     public function show($id)
     {
-        $persona=$this->personaService->verPersona($id);
+        $persona = $this->personaService->verPersona($id);
         return new PersonaShowResource($persona);
     }
 
@@ -84,9 +83,8 @@ class PersonaController extends Controller
     }
 
     public function ListaPersona()
-    {
-        {
-            $persona=$this->personaService->personaLista();
+    { {
+            $persona = $this->personaService->personaLista();
             return PersonaShowResource::collection($persona);
         }
     }
@@ -106,9 +104,10 @@ class PersonaController extends Controller
         }
     }
 
-    public function buscarPersona($query)
+    public function buscarPersona(Request $request)
     {
         try {
+            $query = $request->input('query');
             $personas = $this->personaService->buscarPersona($query);
 
             return PersonaResource::collection($personas);
@@ -117,13 +116,10 @@ class PersonaController extends Controller
         }
     }
 
+
     public function personaAll()
     {
-        $persona=$this->personaService->personaAll();
+        $persona = $this->personaService->personaAll();
         return PersonaResource::collection($persona);
     }
-
-
-
 }
-

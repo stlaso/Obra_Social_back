@@ -16,13 +16,13 @@ class PersonaService
 {
     public function personaTabla()
     {
-        $persona = Persona::orderBy('apellido', 'asc')->paginate(10);
+        $persona = Persona::orderBy('nombre', 'asc')->paginate(10);
         return $persona;
     }
 
     public function personaAll()
     {
-        $persona=Persona::orderBy('apellido', 'asc')->get();
+        $persona=Persona::orderBy('nombre', 'asc')->get();
         return $persona;
     }
 
@@ -336,8 +336,11 @@ class PersonaService
     public function buscarPersona($query)
     {
         $personas = Persona::where('dni', 'LIKE', "%$query%")
-            ->orWhere('legajo', 'LIKE', "%$query%")->get();
-
+            ->orWhere('legajo', 'LIKE', "%$query%")
+            ->orWhere('nombre', 'LIKE', "%$query%")
+            ->orWhere('apellido', 'LIKE', "%$query%")
+            ->get();
+    
         return $personas;
     }
 }

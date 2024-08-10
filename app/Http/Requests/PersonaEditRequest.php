@@ -44,24 +44,24 @@ class PersonaEditRequest extends FormRequest
                 'string',
                 Rule::unique('persona')->ignore($id)
             ],
-            'persona.email' => 'nullable|email',
+            'persona.email' => 'nullable|string',
             'persona.telefono' => 'nullable|string',
             'persona.nacionalidad_id' => 'nullable|exists:nacionalidad,id',
             'persona.estados_id' => 'exists:estados,id',
-            'user_id'=>'required|integer',
+            'users_id'=>'required|integer',
 
               //DOMICILIO
               'domicilio.provincia_id'=>'nullable|integer',
               'domicilio.domicilio' => 'nullable|string',
               'domicilio.localidad_id'=>'nullable|integer',
               'domicilio.codigo_postal' => 'nullable|integer',
-              'user_id'=>'nullable|integer',
+              'users_id'=>'nullable|integer',
 
               //DATOS LABORALES
 
               'datos_laborales.carga_horaria' => 'nullable|string',
               'datos_laborales.fecha_ingreso' => 'nullable|date',
-              'datos_laborales.email_laboral' => 'nullable|email',
+              'datos_laborales.email_laboral' => 'nullable|string',
               'datos_laborales.tramo_id' => 'nullable|integer',
               'datos_laborales.agrupamiento_id' => 'nullable|integer',
               'datos_laborales.seccional_id' => 'nullable|exists:seccional,id',
@@ -73,7 +73,7 @@ class PersonaEditRequest extends FormRequest
               //OBRA SOCIAL
               'obra_social.tipo_obra' => 'nullable|string',
               'obra_social.obra_social' => 'nullable|string',
-              'user_id'=>'nullable|integer',
+              'users_id'=>'nullable|integer',
 
               //Familiares
 
@@ -83,8 +83,8 @@ class PersonaEditRequest extends FormRequest
               'familiares.*.tipo_documento_familiar' => 'nullable|string|max:255',
               'familiares.*.documento' => 'nullable|string',
               'familiares.*.parentesco_id' => 'nullable|exists:parentesco,id',
-              'user_id'=>'nullable|integer',
-              'users_nombre'=>'nullable|string',
+              'subsidios.users_id'=>'nullable|integer',
+              'subsidios.users_nombre'=>'nullable|string',
 
               //SUBSIDIOS
               'subsidios' => 'array',
@@ -92,16 +92,15 @@ class PersonaEditRequest extends FormRequest
               'subsidios.*.fecha_solicitud' => 'nullable|date',
               'subsidios.*.fecha_otorgamiento' => 'nullable|date|after_or_equal:subsidios.*.fecha_solicitud',
               'subsidios.*.observaciones' => 'nullable|string|max:255',
-              'user_id'=>'nullable|integer',
-              'users_nombre'=>'nullable|string',
+              'subsidios.users_id'=>'nullable|integer',
+              'subsidios.users_nombre'=>'nullable|string',
 
               //DOCUMENTACION
               'documentacion' => 'array',
               'documentacion.*.tipo_documento_id' => 'nullable|exists:tipo_documento,id',
               'documentacion.*.archivo' => 'nullable|string|max:2048',
-              'user_id'=>'nullable|integer',
-              'users_nombre'=>'nullable|string',
-
+              'documentacion.users_id'=>'nullable|integer',
+              'documentacion.users_nombre'=>'nullable|string',
         ];
     }
 
