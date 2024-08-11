@@ -96,11 +96,8 @@ class PersonaEditRequest extends FormRequest
               'subsidios.users_nombre'=>'nullable|string',
 
               //DOCUMENTACION
-              'documentacion' => 'array',
-              'documentacion.*.tipo_documento_id' => 'nullable|exists:tipo_documento,id',
-              'documentacion.*.archivo' => 'nullable|string|max:2048',
-              'documentacion.users_id'=>'nullable|integer',
-              'documentacion.users_nombre'=>'nullable|string',
+            'documentacion' => 'array',
+            'documentacion.*.id'=>'nullable|integer'
         ];
     }
 

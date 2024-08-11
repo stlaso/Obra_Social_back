@@ -202,11 +202,8 @@ class PersonaService
 
             // Manejo de documentación
             if (isset($data['documentacion'])) {
-                $this->actualizarDocumentacion($persona->id, $data['documentacion']);
-            } else {
-                $this->eliminarDocumentacion($persona->id);
-            }
-
+                $this->asignarDocumentos($persona->id, $data['documentacion']);
+            } 
             DB::commit();
 
             return $persona;
@@ -265,30 +262,6 @@ class PersonaService
         }
     }
 
-    private function actualizarDocumentacion($personaId, $data)
-    {
-        $existingDocumentacion = Documentacion::where('persona_id', $personaId)->get()->keyBy('id')->toArray();
-
-        foreach ($data as $doc) {
-            if (isset($doc['id'])) {
-                if (isset($existingDocumentacion[$doc['id']])) {
-                    Documentacion::where('id', $doc['id'])->update($doc);
-                    unset($existingDocumentacion[$doc['id']]);
-                } else {
-                    $doc['persona_id'] = $personaId;
-                    Documentacion::create($doc);
-                }
-            } else {
-                $doc['persona_id'] = $personaId;
-                Documentacion::create($doc);
-            }
-        }
-
-        foreach ($existingDocumentacion as $doc) {
-            Documentacion::where('id', $doc['id'])->delete();
-        }
-    }
-
     private function eliminarFamiliares($personaId)
     {
         Familiares::where('persona_id', $personaId)->delete();
@@ -299,10 +272,6 @@ class PersonaService
         Subsidios::where('persona_id', $personaId)->delete();
     }
 
-    private function eliminarDocumentacion($personaId)
-    {
-        Documentacion::where('persona_id', $personaId)->delete();
-    }
 
     public function eliminarPersona($id)
     {
