@@ -8,8 +8,14 @@ class SeccionalService
 {
     public function SeccionalLista()
     {
-        $Seccional = Seccional::orderBy('nombre', 'asc')->paginate(15);
+        $Seccional = Seccional::orderBy('nombre', 'asc')->paginate(10);
         return $Seccional;
+    }
+
+    public function seccionalAll()
+    {
+        $seccional=Seccional::orderBy('nombre', 'asc')->get();
+        return $seccional;
     }
 
     public function crearSeccional($data)

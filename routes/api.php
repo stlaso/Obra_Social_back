@@ -41,6 +41,7 @@ use App\Http\Controllers\RolesController;
 Route::get('personalista', [PersonaController::class,'listapersona']);
 Route::get('personaAll', [PersonaController::class,'personaAll']);
 Route::get('buscar-persona', [PersonaController::class,'buscarPersona']);
+Route::get('seccionalAll', [SeccionalController::class,'seccionalAll']);
 Route::get('buscar-seccional', [SeccionalController::class, 'buscarSeccional']);
 Route::post('/cambiar-estado', [PersonaController::class, 'cambiarEstado']);
 Route::apiResource('personas', PersonaController::class);

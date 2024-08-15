@@ -78,7 +78,13 @@ class SeccionalController extends Controller
         } catch (\Exception $e) {
             throw new CustomizeException('Seccional no encontrada', Response::HTTP_NOT_FOUND);
         }
-    }    
+    }
+    
+    public function seccionalAll()
+    {
+        $seccional = $this->seccionalService->seccionalAll();
+        return SeccionalResource::collection($seccional);
+    }
 
     public function destroy($id)
     {
