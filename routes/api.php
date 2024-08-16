@@ -46,6 +46,8 @@ Route::get('buscar-seccional', [SeccionalController::class, 'buscarSeccional']);
 Route::post('/cambiar-estado', [PersonaController::class, 'cambiarEstado']);
 Route::apiResource('personas', PersonaController::class);
 Route::apiResource('localidad', LocalidadController::class);
+Route::get('buscar-localidad', [LocalidadController::class, 'buscarLocalidad']);
+Route::get('localidades/{provincia_id}', [LocalidadController::class, 'obtenerPorProvincia']);
 Route::apiResource('provincia', ProvinciaController::class);
 Route::apiResource('nacionalidad', NacionalidadController::class);
 Route::apiResource('agrupamiento', AgrupamientoController::class);
