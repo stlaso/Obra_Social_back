@@ -15,9 +15,13 @@ class AgenciaResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->resource->id,
-            'nombre' => $this->resource->nombre,
-
+            'id' => $this->id,
+            'nombre' => $this->nombre,
+            'ugl_id' => $this->resource->ugl_id,
+            'ugl' => $this->ugl ? $this->ugl->nombre : null,
+            'domicilio_trabajo' => $this->domicilio_trabajo,
+            'telefono_laboral' => $this->telefono_laboral,
         ];
     }
 }
+

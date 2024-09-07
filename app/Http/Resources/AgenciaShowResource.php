@@ -17,6 +17,8 @@ class AgenciaShowResource extends JsonResource
         return [
             'id' => $this->resource->id,
             'nombre' => $this->resource->nombre,
+            'ugl_id' => $this->resource->ugl_id,
+            'ugl' => $this->resource->ugl ? $this->resource->ugl->nombre : null,
             'domicilio_trabajo' => $this->resource->domicilio_trabajo,
             'telefono_laboral' => $this->resource->telefono_laboral,
         ];
