@@ -26,6 +26,11 @@ class PersonaService
         return $persona;
     }
 
+    public function getLegajos()
+    {
+        return Persona::pluck('legajo');
+    }
+
     public function verPersona($id)
     {
         $persona = Persona::with([

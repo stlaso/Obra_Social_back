@@ -40,6 +40,7 @@ use App\Http\Controllers\RolesController;
 });*/
 Route::get('personalista', [PersonaController::class,'listapersona']);
 Route::get('personaAll', [PersonaController::class,'personaAll']);
+Route::get('legajos', [PersonaController::class, 'legajos']);
 Route::get('buscar-persona', [PersonaController::class,'buscarPersona']);
 Route::get('seccionalAll', [SeccionalController::class,'seccionalAll']);
 Route::get('buscar-seccional', [SeccionalController::class, 'buscarSeccional']);

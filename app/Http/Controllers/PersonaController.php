@@ -28,6 +28,12 @@ class PersonaController extends Controller
         return PersonaResource::collection($persona);
     }
 
+    public function legajos()
+    {
+        $legajos = $this->personaService->getLegajos();
+        return response()->json($legajos);
+    }
+
     public function store(PersonaRequest $request)
     {
         try {
